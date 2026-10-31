@@ -9,6 +9,7 @@ import './styles/sections.css'
 import type { Experience } from './experience/experience'
 import { gsap, ScrollTrigger } from './lib/gsap'
 import { initContactForm } from './modules/contact-form'
+import { initDeepTime } from './modules/deep-time'
 import { initEncodeVisuals } from './modules/encode-visual'
 import { initHeader } from './modules/header'
 import { initHowItWorks } from './modules/how-it-works'
@@ -65,6 +66,8 @@ async function boot() {
   // Let the plate arrive first; the words follow.
   gsap.delayedCall(0.9, playIntro)
 
+  // Pinned sections first: their pin spacing shifts every trigger below them.
+  initDeepTime()
   initReveal()
   initLifespanChart()
   initEncodeVisuals()
@@ -76,6 +79,7 @@ async function boot() {
   initVaultDrawing()
   initMessagePlate()
   initContactForm()
+  ScrollTrigger.sort()
   ScrollTrigger.refresh()
 }
 

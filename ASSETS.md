@@ -37,6 +37,14 @@
 | L08 | `img/use-libraries.webp` | Тёмная библиотека | https://unsplash.com/photos/RBGIWOZJVU0 | Nikolai Sidorov | Unsplash | Кадрирование 3:4, WebP | 31.10.2026 |
 | L09 | `img/use-science.webp` | Склянки с семенами | https://www.pexels.com/photo/close-up-photo-of-glass-bottle-with-seeds-6166831/ | Olha Ruskykh | Pexels | Кадрирование 3:4, WebP | 31.10.2026 |
 | L10 | `img/use-families.webp` | Руки листают старый фотоальбом | https://unsplash.com/photos/73OJLcahQHg | Laura Fuhrman | Unsplash | Кадрирование 3:4, WebP | 31.10.2026 |
+| L12 | `img/time-1969.webp` | След ботинка на Луне, Apollo 11, AS11-40-5878 | https://images.nasa.gov/details/as11-40-5878 | NASA | Не охраняется авторским правом в США (NASA Media Usage Guidelines). Нужно указать «NASA» как источник и не подразумевать одобрение | Кадрирование 4:5, WebP | 31.10.2026 |
+| L13 | `img/time-1455.webp` | Библия Гутенберга, Бытие XI (Harry Ransom Center) | https://commons.wikimedia.org/wiki/File:Gutenberg_bible,_Genesis,_Chapter_XI,_Volume_I-9r_-_Harry_Ransom_Center_-_University_of_Texas_at_Austin_-_DSC08418.jpg | Daderot | CC0 1.0 | Кадрирование 4:5, WebP | 31.10.2026 |
+| L14 | `img/time-80.webp` | Колизей под облачным небом | https://www.pexels.com/photo/concrete-building-2464239/ | maceiras (Pexels) | Pexels | Кадрирование 4:5, WebP | 31.10.2026 |
+| L15 | `img/time-2560bc.webp` | Пирамида Гизы на закате | https://www.pexels.com/photo/sunlight-over-pyramid-at-sunset-15127201/ | Diego F. Parra (Pexels) | Pexels | Кадрирование 4:5, WebP | 31.10.2026 |
+| L16 | `img/time-3200bc.webp` | Клинописная табличка, ученическое упражнение (The Met, DP360672) | https://commons.wikimedia.org/wiki/File:Cuneiform_tablet-_student_exercise_tablet_MET_DP360672.jpg | The Metropolitan Museum of Art | CC0 1.0 (Met Open Access) | Кадрирование 4:5, WebP | 31.10.2026 |
+| L17 | `img/time-8000bc.webp` | Колосья пшеницы | https://unsplash.com/photos/close-up-of-a-wheat-YxaJDYKLFOM | Dave LZ | Unsplash | Кадрирование 4:5, WebP | 31.10.2026 |
+| L18 | `img/case-harbour.webp` | Рыбацкие лодки в фьорде, Лофотены | https://www.pexels.com/photo/fishing-boats-docked-in-lofoten-fjord-32538590/ | therato (Pexels) | Pexels | Кадрирование 16:9, WebP | 31.10.2026 |
+| L19 | `img/case-ledger.webp` | Старая книга учёта с рукописными записями | https://unsplash.com/photos/old-ledger-book-with-handwritten-entries-and-an-inkwell-CA4QegCOiDQ | Magic Fan | Unsplash | Кадрирование 4:5, WebP | 31.10.2026 |
 | L11 | шрифты Archivo, Martian Mono | Шрифты | @fontsource-variable (Google Fonts) | Omnibus-Type; Evil Martians | SIL OFL 1.1 | — | 31.10.2026 |
 
 ### Упоминания реальных брендов (не ассеты, а товарные знаки)

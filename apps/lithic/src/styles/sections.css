@@ -1477,3 +1477,226 @@ main > section:not(.hero) {
     grid-column: 1 / -1;
   }
 }
+
+/* ---------- Light theme: same components, palette flipped through the variables ---------- */
+.theme-light {
+  --night: #ece8df;
+  --stone-950: #e4dfd4;
+  --stone-900: #dad4c7;
+  --stone-800: #cbc4b5;
+  --stone-700: #b6ae9e;
+  --bone-100: #0b0d10;
+  --bone-300: #34322d;
+  --bone-500: #6b665c;
+  --line: rgb(11 13 16 / 0.12);
+  --line-strong: rgb(11 13 16 / 0.28);
+  --laser-ink: #b23c0c; /* the laser orange, darkened enough to read as text on paper */
+  color: var(--bone-100);
+}
+
+/* Full-bleed paper even when the section itself is width-limited. */
+.theme-light.section {
+  box-shadow: 0 0 0 100vmax var(--night);
+  clip-path: inset(0 -100vmax);
+}
+
+.theme-light .plan__name,
+.theme-light .faq__item[open] summary::after {
+  color: var(--laser-ink);
+}
+
+.theme-light + .theme-light {
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Deep time ---------- */
+.deep {
+  --card-h: clamp(13rem, calc(100svh - 34rem), 30rem);
+}
+
+.deep__pin {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* don't let the wide track stretch the column */
+  grid-template-rows: auto 1fr auto;
+  height: 100svh;
+  padding: calc(var(--header-h) + 1.5rem) 0 clamp(1.5rem, 4vh, 2.5rem);
+  overflow: hidden;
+}
+
+.deep__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  padding-inline: var(--gutter);
+}
+
+.deep__intro {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.deep__title {
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.4vw, 3.6rem);
+  font-stretch: 112%;
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.deep__counter {
+  display: grid;
+  justify-items: end;
+  gap: 0.35rem;
+  color: var(--bone-500);
+}
+
+.deep__counter-value {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--bone-100);
+}
+
+.deep__viewport {
+  display: flex;
+  align-items: flex-end;
+  min-height: 0;
+  padding-top: 2vh;
+}
+
+.deep__track {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-inline: var(--gutter) 12vw;
+  will-change: transform;
+}
+
+.deep-card {
+  display: grid;
+  flex: none;
+  align-content: start;
+  gap: 0.35rem;
+  width: calc(var(--card-h) * 0.8);
+}
+
+.deep-card__image {
+  height: var(--card-h);
+  margin: 0 0 0.9rem;
+  overflow: hidden;
+  background: var(--stone-900);
+}
+
+.deep-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.35) sepia(0.12) contrast(1.05);
+  transform: scale(1.06);
+  transition:
+    transform 1.6s var(--ease-out),
+    filter 1s;
+}
+
+.deep-card.is-current .deep-card__image img {
+  filter: grayscale(0) sepia(0.05) contrast(1.05);
+  transform: scale(1);
+}
+
+.deep-card__year {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+  font-stretch: 125%;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.deep-card__ago {
+  color: var(--bone-500);
+}
+
+.deep-card__title {
+  margin-top: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.deep-card__text {
+  max-width: 30ch;
+  color: var(--bone-300);
+}
+
+/* The last stop flips back to night: the future the plate is built for. */
+.deep-card--final {
+  align-content: center;
+  gap: 1rem;
+  width: min(78vw, 58rem);
+  height: calc(var(--card-h) + 8.5rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  background: #06080b;
+  color: #ece8df;
+}
+
+.deep-card__eyebrow {
+  color: var(--laser);
+}
+
+.deep-card__future {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 14vw, 13rem);
+  font-stretch: 125%;
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.045em;
+}
+
+.deep-card__promise {
+  max-width: 34ch;
+  font-size: var(--fs-lead);
+  color: #c9c4b8;
+}
+
+.deep__axis {
+  position: relative;
+  height: 2px;
+  margin: 2.5vh var(--gutter) 0;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.deep__axis span {
+  position: absolute;
+  inset: 0;
+  background: var(--laser);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Without motion: no pin, the row scrolls sideways on its own. */
+.deep--static .deep__pin {
+  height: auto;
+}
+
+.deep--static .deep__viewport {
+  overflow-x: auto;
+  padding-block: 2rem;
+}
+
+@media (max-width: 700px) {
+  .deep {
+    --card-h: clamp(12rem, calc(100svh - 30rem), 22rem);
+  }
+
+  .deep__counter {
+    justify-items: start;
+  }
+}
