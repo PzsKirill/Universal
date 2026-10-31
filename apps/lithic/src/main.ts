@@ -16,6 +16,7 @@ import { initHeader } from './modules/header'
 import { initHowItWorks } from './modules/how-it-works'
 import { initLifespanChart } from './modules/lifespan-chart'
 import { runLoader } from './modules/loader'
+import { initSceneClip } from './modules/scene-clip'
 import { initAutoplayVideos } from './modules/media'
 import { initRoute } from './modules/route'
 import { initReveal, initVaultDrawing, initVaultParallax, playIntro } from './modules/scroll-scenes'
@@ -66,6 +67,10 @@ async function boot() {
 
   // Let the plate arrive first; the words follow.
   gsap.delayedCall(0.9, playIntro)
+
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-experience]')
+  const sceneSections = [...document.querySelectorAll<HTMLElement>('.hero, [data-finale]')]
+  if (canvas) initSceneClip(canvas, sceneSections)
 
   // Pinned sections first: their pin spacing shifts every trigger below them.
   initDeepTime()
