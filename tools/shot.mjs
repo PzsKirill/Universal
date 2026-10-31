@@ -31,6 +31,8 @@ const stops = [
   ['07-mile', '#expedition', 0, 2600],
   ['07b-route', '[data-route]', -0.25, 2000],
   ['07c-kit', '.kit', 0, 1400],
+  ['07d-case', '#case', 0.1, 1600],
+  ['07e-case-quote', '.case__quote', -0.2, 1800],
   ['08-pricing', '#pricing', 0.05, 1400],
   ['09-faq', '#faq', 0, 2600],
   ['10-finale', '#message', 0, 7500],

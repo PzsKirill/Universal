@@ -27,12 +27,9 @@ export function initDeepTime(): void {
 
   const distance = () => Math.max(track.scrollWidth - window.innerWidth, 0)
 
-  // Scroll progress at which each card's centre crosses the centre of the screen.
-  let stops: number[] = []
-  const measure = () => {
-    const travel = distance() || 1
-    stops = cards.map((card) => (card.offsetLeft + card.offsetWidth / 2 - window.innerWidth / 2) / travel)
-  }
+  // Each card owns an equal slice of the scroll: the counter starts at the first moment (57 years)
+  // and reaches 10,000 as the last card arrives.
+  const stops = cards.map((_, i) => i / Math.max(cards.length - 1, 1))
 
   const update = (progress: number) => {
     bar.style.transform = `scaleX(${progress})`
@@ -65,10 +62,7 @@ export function initDeepTime(): void {
       pin: true,
       scrub: 0.8,
       invalidateOnRefresh: true,
-      onRefresh: (self) => {
-        measure()
-        update(self.progress)
-      },
+      onRefresh: (self) => update(self.progress),
       onUpdate: (self) => update(self.progress),
     },
   })

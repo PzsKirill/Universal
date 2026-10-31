@@ -35,19 +35,20 @@ export function initReveal(): void {
   })
 }
 
-/** The tunnel photo drifts slower than the page, so the vault feels deep. */
+/** Full-bleed photos (vault tunnel, case-study harbour) drift slower than the page, for depth. */
 export function initVaultParallax(): void {
-  const image = document.querySelector<HTMLElement>('[data-vault-image]')
-  if (!image || reducedMotion) return
-  gsap.fromTo(
-    image,
-    { yPercent: -6 },
-    {
-      yPercent: 6,
-      ease: 'none',
-      scrollTrigger: { trigger: image.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
-    },
-  )
+  if (reducedMotion) return
+  document.querySelectorAll<HTMLElement>('[data-vault-image], [data-case-image]').forEach((image) => {
+    gsap.fromTo(
+      image,
+      { yPercent: -6 },
+      {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: { trigger: image.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
+      },
+    )
+  })
 }
 
 /** Vault cross-section draws itself as you scroll; a capsule descends the shaft to the chamber. */
