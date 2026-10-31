@@ -33,7 +33,7 @@ const stops = [
   ['07c-kit', '.kit', 0, 1400],
   ['08-pricing', '#pricing', 0.05, 1400],
   ['09-faq', '#faq', 0, 2600],
-  ['10-message', '#message', 0, 4200],
+  ['10-finale', '#message', 0, 7500],
   ['11-contact', '#contact', 0, 1000],
   ['12-footer', '.footer', 0.1, 900],
 ]

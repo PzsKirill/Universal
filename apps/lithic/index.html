@@ -539,24 +539,19 @@
         </div>
       </section>
 
-      <!-- Write ahead -->
-      <section class="message section" id="message" aria-labelledby="message-title">
-        <div class="message__intro">
-          <p class="eyebrow mono">Try it</p>
-          <h2 class="section-title display" id="message-title">Leave a line for the year <span data-future-year>12026</span>.</h2>
-          <p class="section-lead">Type a message and watch the laser etch it into a plate. It stays in your browser.</p>
-        </div>
-        <div class="message__plate">
-          <div class="plate">
-            <p class="plate__meta mono"><span>Plate Nº <span data-plate-id>000001</span></span><span>Fused quartz · 120 × 120 mm</span></p>
-            <canvas class="plate__canvas" data-message-canvas aria-hidden="true"></canvas>
-            <p class="plate__status mono" data-message-status role="status">Ready to etch</p>
-          </div>
-          <form class="message__form" data-message-form>
-            <label class="visually-hidden" for="message-input">Your message</label>
-            <input class="message__input" id="message-input" name="message" type="text" maxlength="40" autocomplete="off" placeholder="Hello from 2026" />
+      <!-- Finale: the plate comes back and takes the visitor's message down into the vault -->
+      <section class="finale" id="message" aria-labelledby="finale-title" data-finale>
+        <div class="finale__copy">
+          <p class="eyebrow mono">Write ahead</p>
+          <h2 class="finale__title display" id="finale-title">Leave a line for the year <span data-future-year>12026</span>.</h2>
+          <p class="section-lead">Type a message. The laser etches it into a plate, and the plate goes down into the vault.</p>
+          <form class="finale__form" data-finale-form>
+            <label class="visually-hidden" for="finale-input">Your message</label>
+            <input class="finale__input" id="finale-input" name="message" type="text" maxlength="33" autocomplete="off" placeholder="Hello from 2026" />
             <button class="btn btn--laser" type="submit">Etch &amp; seal</button>
           </form>
+          <p class="finale__status mono" data-finale-status role="status">Plate ready</p>
+          <button class="finale__again mono" type="button" data-finale-again hidden>Write another →</button>
         </div>
       </section>
 

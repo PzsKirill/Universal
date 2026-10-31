@@ -11,12 +11,12 @@ import { gsap, ScrollTrigger } from './lib/gsap'
 import { initContactForm } from './modules/contact-form'
 import { initDeepTime } from './modules/deep-time'
 import { initEncodeVisuals } from './modules/encode-visual'
+import { initFinale } from './modules/finale'
 import { initHeader } from './modules/header'
 import { initHowItWorks } from './modules/how-it-works'
 import { initLifespanChart } from './modules/lifespan-chart'
 import { runLoader } from './modules/loader'
 import { initAutoplayVideos } from './modules/media'
-import { initMessagePlate } from './modules/message-plate'
 import { initRoute } from './modules/route'
 import { initReveal, initVaultDrawing, initVaultParallax, playIntro } from './modules/scroll-scenes'
 import { initSmoothScroll } from './modules/smooth-scroll'
@@ -77,7 +77,7 @@ async function boot() {
   initVelocityMarquees()
   initVaultParallax()
   initVaultDrawing()
-  initMessagePlate()
+  initFinale(experience)
   initContactForm()
   ScrollTrigger.sort()
   ScrollTrigger.refresh()

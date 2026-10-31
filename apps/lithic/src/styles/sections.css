@@ -1210,63 +1210,54 @@ main > section:not(.hero) {
   color: var(--bone-300);
 }
 
-/* ---------- Write ahead ---------- */
-.message {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: clamp(2rem, 6vw, 6rem);
-  align-items: center;
-  border-top: 1px solid var(--line);
+/* ---------- Finale: the 3D plate returns behind this section ---------- */
+main > section.finale {
+  background: none;
 }
 
-.message__intro {
+.finale {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  padding: var(--section-space) var(--gutter);
+}
+
+/* Fade into the night above and below; keep the copy side dark enough to read. */
+.finale::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(6 8 11 / 0.88), rgb(6 8 11 / 0.25) 55%, transparent),
+    linear-gradient(to bottom, var(--night), transparent 22%, transparent 78%, var(--night));
+  pointer-events: none;
+}
+
+.no-webgl .finale {
+  background:
+    linear-gradient(90deg, rgb(6 8 11 / 0.9), rgb(6 8 11 / 0.5)),
+    url('/media/video/hero-poster.jpg') center / cover;
+}
+
+.finale__copy {
   display: grid;
   gap: 1.5rem;
+  max-width: 34rem;
 }
 
-.message__plate {
-  display: grid;
-  gap: 1.25rem;
+.finale__title {
+  font-size: var(--fs-display-l);
 }
 
-.plate {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  aspect-ratio: 16 / 10;
-  padding: 1rem;
-  border: 1px solid var(--line-strong);
-  background:
-    radial-gradient(circle at 70% 20%, rgb(236 232 223 / 0.06), transparent 60%),
-    var(--stone-900);
-}
-
-.plate__meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  color: var(--bone-500);
-}
-
-.plate__canvas {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-
-.plate__status {
-  color: var(--bone-500);
-}
-
-.plate__status.is-sealed {
-  color: var(--laser);
-}
-
-.message__form {
+.finale__form {
   display: flex;
   gap: 1rem;
+  margin-top: 0.5rem;
 }
 
-.message__input {
+.finale__input {
   flex: 1;
   min-width: 0;
   padding: 0.9rem 0;
@@ -1274,26 +1265,52 @@ main > section:not(.hero) {
   border-bottom: 1px solid var(--line-strong);
   background: none;
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
+  transition: border-color 0.3s;
 }
 
-.message__input::placeholder {
+.finale__input::placeholder {
   color: var(--bone-500);
 }
 
-.message__input:focus {
+.finale__input:focus {
   border-color: var(--laser);
   outline: none;
 }
 
+.finale__input:disabled {
+  opacity: 0.5;
+}
+
+.finale__status {
+  min-height: 1.5em;
+  color: var(--bone-500);
+}
+
+.finale__status.is-sealed {
+  color: var(--laser);
+}
+
+.finale__again {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--bone-100);
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+  cursor: pointer;
+}
+
 @media (max-width: 900px) {
-  .message {
-    grid-template-columns: 1fr;
+  .finale {
+    align-items: end;
+    padding-top: 55svh;
   }
 
-  .plate__meta > :last-child {
-    display: none;
+  .finale::before {
+    background: linear-gradient(to bottom, var(--night), transparent 15%, rgb(6 8 11 / 0.6) 50%, var(--night));
   }
 }
 

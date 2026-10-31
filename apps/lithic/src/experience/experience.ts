@@ -4,7 +4,7 @@ import { gsap } from '../lib/gsap'
 import { reducedMotion } from '../lib/motion'
 import { createBackdrop } from './backdrop'
 import { createGlassEnvironment } from './environment'
-import { createPlate } from './plate'
+import { blankPattern, createPlate, messagePattern } from './plate'
 import { createComposer } from './post'
 import { createSnow } from './snow'
 
@@ -20,8 +20,9 @@ export interface ExperienceEvents {
 }
 
 /**
- * The hero scene: real mountain footage, and in front of it the product itself,
- * a quartz plate that turns toward the cursor and gets etched by the laser on arrival.
+ * One WebGL scene behind the page, shown twice: in the hero (real mountain footage and the
+ * product, a quartz plate that follows the cursor) and again in the finale, where the
+ * visitor's message is etched into the plate and the plate goes down into the vault.
  */
 export class Experience {
   readonly ready: Promise<void>
@@ -43,7 +44,10 @@ export class Experience {
   private pointer = { x: 0, y: 0, smoothX: 0, smoothY: 0 }
   private plateRotation = { x: 0.08, y: -0.38 }
   private intro = { dolly: 1 } // 1 = far away, 0 = resting
-  private scroll = 0
+  private drop = { value: 0 } // 1 = sunk into the vault, -1 = waiting above the frame
+  private etch = { value: 0 }
+  private scroll = 0 // hero progress, 0..1
+  private finale = 0 // finale visibility, 0..1
   private running = false
 
   constructor(
@@ -85,10 +89,9 @@ export class Experience {
 
     if (reducedMotion) {
       this.intro.dolly = 0
-      this.plate.setEtch(1)
-    } else {
-      this.plate.setEtch(0)
+      this.etch.value = 1
     }
+    this.plate.setEtch(this.etch.value)
 
     window.addEventListener('pointermove', this.onPointerMove)
     window.addEventListener('resize', this.resize)
@@ -104,35 +107,84 @@ export class Experience {
   playIntro() {
     this.backdrop.play()
     if (reducedMotion) return
-    const tl = gsap.timeline()
-    tl.to(this.intro, { dolly: 0, duration: 3.6, ease: 'expo.out' }, 0)
-
-    const etch = { value: 0 }
-    let lastTick = 0
-    tl.to(
-      etch,
-      {
-        value: 1,
-        duration: 3.2,
-        ease: 'none',
-        onUpdate: () => {
-          this.plate.setEtch(etch.value)
-          if (etch.value - lastTick > 0.035) {
-            lastTick = etch.value
-            this.events.onEtchTick?.()
-          }
-        },
-      },
-      1.2,
-    )
+    gsap.to(this.intro, { dolly: 0, duration: 3.6, ease: 'expo.out' })
+    void this.runEtch(3.2, 1.2)
   }
 
   /** 0..1 across the hero: the plate tips and sinks, the footage dims, the canvas fades out. */
   setScroll(progress: number) {
     this.scroll = progress
-    this.canvas.style.opacity = String(1 - MathUtils.smoothstep(progress, 0.75, 1))
-    this.backdrop.setDim(1 - progress * 0.6)
-    if (progress >= 1) {
+    this.syncVisibility()
+  }
+
+  /** 0..1: how much of the finale section is on screen. Brings the scene back behind it. */
+  setFinale(visibility: number) {
+    this.finale = visibility
+    // A sealed plate doesn't stay sunk once the visitor scrolls away: it comes back carrying their words.
+    if (visibility === 0 && this.drop.value > 0) {
+      gsap.killTweensOf(this.drop)
+      this.drop.value = 0
+    }
+    this.syncVisibility()
+  }
+
+  /** Writes a message into a fresh plate. Resolves when the laser has finished. */
+  async etchMessage(message: string) {
+    this.plate.setPattern(messagePattern(message))
+    await this.runEtch(reducedMotion ? 0 : 2.6)
+  }
+
+  /** Tips the plate over and lowers it out of frame, into the vault. */
+  async seal() {
+    if (reducedMotion) return
+    await gsap.to(this.drop, { value: 1, duration: 1.7, ease: 'power3.in' })
+  }
+
+  /** A blank plate comes down from above, ready for the next message. */
+  async presentBlankPlate() {
+    this.plate.setPattern(blankPattern())
+    this.etch.value = 1
+    this.plate.setEtch(1)
+    if (reducedMotion) {
+      this.drop.value = 0
+      return
+    }
+    this.drop.value = -0.7
+    await gsap.to(this.drop, { value: 0, duration: 1.6, ease: 'expo.out' })
+  }
+
+  /** Runs the laser across the plate; ticks the sound as voxels appear. */
+  private async runEtch(duration: number, delay = 0) {
+    this.etch.value = 0
+    this.plate.setEtch(0)
+    if (duration <= 0) {
+      this.etch.value = 1
+      this.plate.setEtch(1)
+      return
+    }
+    let lastTick = 0
+    await gsap.to(this.etch, {
+      value: 1,
+      duration,
+      delay,
+      ease: 'none',
+      onUpdate: () => {
+        this.plate.setEtch(this.etch.value)
+        if (this.etch.value - lastTick > 0.035) {
+          lastTick = this.etch.value
+          this.events.onEtchTick?.()
+        }
+      },
+    })
+  }
+
+  /** Canvas opacity and the render loop follow whichever of hero or finale is on screen. */
+  private syncVisibility() {
+    const hero = 1 - MathUtils.smoothstep(this.scroll, 0.75, 1)
+    const opacity = Math.max(hero, this.finale)
+    this.canvas.style.opacity = String(opacity)
+    this.backdrop.setDim(this.finale > 0 && this.scroll >= 1 ? 0.38 : 1 - this.scroll * 0.6)
+    if (opacity <= 0.001) {
       this.stop()
       this.backdrop.pause()
     } else {
@@ -166,19 +218,25 @@ export class Experience {
     this.pointer.smoothX += (this.pointer.x - this.pointer.smoothX) * follow
     this.pointer.smoothY += (this.pointer.y - this.pointer.smoothY) * follow
     const { smoothX: px, smoothY: py } = this.pointer
-    const s = this.scroll
+    // In the finale the hero's scroll pose no longer applies.
+    const s = this.finale > 0 && this.scroll >= 1 ? 0 : this.scroll
+    const drop = this.drop.value
 
-    // Plate: turns toward the cursor and breathes; on scroll it tips back and sinks.
+    // Plate: turns toward the cursor and breathes; tips back and sinks on scroll or when sealed.
     const turn = 1 - Math.exp(-dt * 3)
     const targetY = -0.38 + px * 0.45 + Math.sin(t * 0.31) * 0.06 * motion
     const targetX = 0.08 - py * 0.3 + Math.sin(t * 0.23) * 0.04 * motion
     this.plateRotation.y += (targetY - this.plateRotation.y) * turn
     this.plateRotation.x += (targetX - this.plateRotation.x) * turn
     const plate = this.plate.group
-    plate.rotation.set(this.plateRotation.x - s * 0.9, this.plateRotation.y, Math.sin(t * 0.17) * 0.02 * motion)
+    plate.rotation.set(
+      this.plateRotation.x - s * 0.9 - Math.max(drop, 0) * 1.25,
+      this.plateRotation.y,
+      Math.sin(t * 0.17) * 0.02 * motion,
+    )
     plate.position.set(
       this.plateHome.x,
-      this.plateHome.y + Math.sin(t * 0.7) * 0.03 * motion - s * 2.2,
+      this.plateHome.y + Math.sin(t * 0.7) * 0.03 * motion - s * 2.2 - drop * 3.4,
       this.plateHome.z - s * 1.2,
     )
 
@@ -232,6 +290,6 @@ export class Experience {
 
   private onVisibility = () => {
     if (document.hidden) this.stop()
-    else if (this.scroll < 1) this.start()
+    else if (this.scroll < 1 || this.finale > 0) this.start()
   }
 }

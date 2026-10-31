@@ -81,6 +81,42 @@ export class Sound {
     osc.stop(now + 0.06)
   }
 
+  /**
+   * The plate going down into the vault: a falling rumble for `duration` seconds,
+   * then a low, heavy thud as it lands.
+   */
+  seal(duration = 1.7) {
+    const { ctx, master } = this
+    if (!this.enabled || !ctx || !master) return
+    const now = ctx.currentTime
+
+    const rumble = ctx.createBufferSource()
+    rumble.buffer = this.whiteNoise(ctx)
+    const sweep = ctx.createBiquadFilter()
+    sweep.type = 'lowpass'
+    sweep.frequency.setValueAtTime(1200, now)
+    sweep.frequency.exponentialRampToValueAtTime(70, now + duration)
+    const rumbleGain = ctx.createGain()
+    rumbleGain.gain.setValueAtTime(0.0001, now)
+    rumbleGain.gain.exponentialRampToValueAtTime(0.14, now + duration * 0.6)
+    rumbleGain.gain.exponentialRampToValueAtTime(0.0001, now + duration + 0.1)
+    rumble.connect(sweep).connect(rumbleGain).connect(master)
+    rumble.start(now)
+    rumble.stop(now + duration + 0.2)
+
+    const landing = now + duration
+    const thud = ctx.createOscillator()
+    thud.frequency.setValueAtTime(95, landing)
+    thud.frequency.exponentialRampToValueAtTime(36, landing + 1.1)
+    const thudGain = ctx.createGain()
+    thudGain.gain.setValueAtTime(0.0001, landing)
+    thudGain.gain.exponentialRampToValueAtTime(0.55, landing + 0.015)
+    thudGain.gain.exponentialRampToValueAtTime(0.0001, landing + 1.5)
+    thud.connect(thudGain).connect(master)
+    thud.start(landing)
+    thud.stop(landing + 1.6)
+  }
+
   private setEnabled(value: boolean) {
     this.enabled = value
     this.listeners.forEach((listener) => listener(value))
