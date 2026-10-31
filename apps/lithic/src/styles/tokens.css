@@ -1,0 +1,38 @@
+:root {
+  /* Palette: night, stone and bone, with a single laser accent */
+  --night: #06080b;
+  --stone-950: #0b0d10;
+  --stone-900: #111418;
+  --stone-800: #1a1e24;
+  --stone-700: #2a2f37;
+  --bone-100: #ece8df;
+  --bone-300: #c9c4b8;
+  --bone-500: #8f8a7f;
+  --laser: #ff5a1f;
+
+  --line: rgb(236 232 223 / 0.12);
+  --line-strong: rgb(236 232 223 / 0.26);
+
+  /* Type: Archivo Expanded for display, Archivo for text, Martian Mono for data */
+  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-mono: 'Martian Mono Variable', ui-monospace, monospace;
+
+  --fs-display-xl: clamp(2.4rem, 5.6vw, 6.4rem);
+  --fs-display-l: clamp(1.9rem, 3.6vw, 4rem);
+  --fs-display-m: clamp(1.3rem, 2vw, 2.1rem);
+  --fs-lead: clamp(1.05rem, 1rem + 0.35vw, 1.3rem);
+  --fs-body: clamp(0.98rem, 0.94rem + 0.2vw, 1.08rem);
+  --fs-mono: 0.66rem;
+
+  /* Layout */
+  --gutter: clamp(1.1rem, 3vw, 3rem);
+  --max: 1440px;
+  --header-h: 4.5rem;
+  --section-space: clamp(6rem, 14vh, 10rem);
+  --radius: 2px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
+}

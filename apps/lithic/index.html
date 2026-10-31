@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LITHIC — Data storage for 10,000 years</title>
+    <meta
+      name="description"
+      content="LITHIC etches archives into quartz glass and seals them 1,200 metres inside a Norwegian mountain. No power, no servers, no migrations. A concept website for a fictional company."
+    />
+    <meta name="theme-color" content="#06080b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/media/video/hero-poster.jpg" as="image" crossorigin="anonymous" />
+    <script>
+      document.documentElement.classList.add('js')
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <canvas class="experience" data-experience aria-hidden="true"></canvas>
+
+    <div class="loader" data-loader role="dialog" aria-modal="true" aria-labelledby="loader-title">
+      <div class="loader__row mono">
+        <span>LITHIC / Deep-time data storage</span>
+        <span class="accent" data-loader-status>Loading</span>
+      </div>
+      <div class="loader__stage">
+        <p class="loader__title" id="loader-title" data-loader-title>LITHIC</p>
+        <span class="loader__laser" data-loader-laser aria-hidden="true"></span>
+      </div>
+      <div class="loader__bottom">
+        <span class="loader__count mono" data-loader-count>000</span>
+        <div class="loader__enter" data-loader-enter hidden>
+          <button class="btn btn--laser" type="button" data-enter="sound">Enter with sound</button>
+          <button class="btn" type="button" data-enter="silent">Enter in silence</button>
+        </div>
+        <span class="loader__hint mono">Headphones recommended</span>
+      </div>
+      <div class="loader__bar"><span data-loader-bar></span></div>
+    </div>
+
+    <header class="header" data-header>
+      <a class="logo" href="#top" aria-label="LITHIC, back to top">
+        <svg viewBox="0 0 18 18" aria-hidden="true">
+          <circle cx="3" cy="3" r="1.5" /><circle cx="9" cy="3" r="1.5" /><circle cx="15" cy="3" r="1.5" />
+          <circle cx="3" cy="9" r="1.5" /><circle cx="15" cy="9" r="1.5" />
+          <circle cx="3" cy="15" r="1.5" /><circle cx="9" cy="15" r="1.5" />
+          <circle class="logo__bit" cx="15" cy="15" r="2" />
+        </svg>
+        LITHIC
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#who">Who it’s for</a>
+        <a href="#vault">The vault</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="sound-toggle mono" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+        <span class="sound-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span data-sound-label>Sound off</span>
+      </button>
+      <a class="btn btn--small btn--solid" href="#contact">Request a vault</a>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="eyebrow mono" data-intro>Deep-time data storage · Norway</p>
+          <h1 class="hero__title display" id="hero-title" data-hero-title>Your data,<br />kept for 10,000 years.</h1>
+          <p class="hero__lead" data-intro>
+            We etch archives into quartz glass and seal them 1,200&nbsp;metres inside a Norwegian mountain. No power.
+            No servers. No migrations. Ever.
+          </p>
+          <div class="hero__actions" data-intro>
+            <a class="btn btn--solid" href="#contact">Request a vault <span aria-hidden="true">→</span></a>
+            <a class="btn" href="#how">See how it works</a>
+          </div>
+        </div>
+
+        <p class="hero__caption mono" data-intro>
+          <span class="hero__caption-line" aria-hidden="true"></span>
+          A LITHIC plate: 120 × 120 mm of fused quartz holding 360 TB
+        </p>
+
+        <ul class="hero__facts" data-intro aria-label="Key facts">
+          <li><strong>10,000+ years</strong><span>readable without any software</span></li>
+          <li><strong>0 watts</strong><span>to keep your data intact</span></li>
+          <li><strong>48 hours</strong><span>to get a certified copy back</span></li>
+        </ul>
+      </section>
+
+      <!-- Custodians -->
+      <section class="trust" aria-labelledby="trust-label">
+        <p class="trust__label mono" id="trust-label">Archives in our custody</p>
+        <div class="marquee">
+          <div class="marquee__track">
+            <ul class="marquee__group">
+              <li>Institute for Long Memory</li>
+              <li>Aurelian Library Trust</li>
+              <li>Nordhavn Seed Collective</li>
+              <li>Meridian Genome Project</li>
+              <li>Halvard Foundation</li>
+              <li>Museum of Vanishing Languages</li>
+            </ul>
+            <ul class="marquee__group" aria-hidden="true">
+              <li>Institute for Long Memory</li>
+              <li>Aurelian Library Trust</li>
+              <li>Nordhavn Seed Collective</li>
+              <li>Meridian Genome Project</li>
+              <li>Halvard Foundation</li>
+              <li>Museum of Vanishing Languages</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem -->
+      <section class="problem section" id="why" aria-labelledby="problem-title">
+        <div class="section-head">
+          <p class="eyebrow mono">The problem</p>
+          <h2 class="section-title display" id="problem-title" data-reveal>Digital memory is fragile.</h2>
+          <p class="section-lead" data-reveal>
+            Every format we use today needs power, upkeep and a migration every few years. Miss one, and the data is
+            gone. Quartz needs nothing.
+          </p>
+        </div>
+
+        <figure class="lifespan" data-lifespan aria-labelledby="lifespan-title">
+          <figcaption class="lifespan__head">
+            <span class="lifespan__title" id="lifespan-title">Typical lifespan of storage media</span>
+            <span class="lifespan__unit mono">Years, log scale</span>
+          </figcaption>
+          <table class="lifespan__table">
+            <colgroup><col class="lifespan__col-label" /><col /></colgroup>
+            <thead class="visually-hidden">
+              <tr><th scope="col">Medium</th><th scope="col">Typical lifespan</th></tr>
+            </thead>
+            <tbody>
+              <tr data-years="5" data-note="Mechanical parts wear out; most fail within 3–5 years of service.">
+                <th scope="row">Hard drive</th>
+                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~5 years</span></div></td>
+              </tr>
+              <tr data-years="20" data-note="Recordable discs fade as their dye layer breaks down.">
+                <th scope="row">Optical disc</th>
+                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~20 years</span></div></td>
+              </tr>
+              <tr data-years="30" data-note="Rated for 30 years in climate-controlled storage, but the readers become obsolete sooner.">
+                <th scope="row">Magnetic tape</th>
+                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~30 years</span></div></td>
+              </tr>
+              <tr class="is-open" data-years="open" data-note="No physical lifespan of its own: it lasts exactly as long as the bills are paid.">
+                <th scope="row">Cloud storage</th>
+                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">Only while someone pays</span></div></td>
+              </tr>
+              <tr class="is-accent" data-years="10000" data-note="Fused quartz is chemically inert and stable at room temperature for geological time.">
+                <th scope="row">LITHIC quartz</th>
+                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">10,000+ years</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="lifespan__axis mono" aria-hidden="true">
+            <span style="--at: 0">1</span>
+            <span style="--at: 0.25">10</span>
+            <span style="--at: 0.5">100</span>
+            <span style="--at: 0.75">1,000</span>
+            <span style="--at: 1">10,000</span>
+          </div>
+          <p class="lifespan__note">Typical figures for media kept in good conditions. Hover a row for details.</p>
+          <div class="lifespan__tooltip mono" data-lifespan-tooltip role="tooltip" hidden></div>
+        </figure>
+      </section>
+
+      <!-- How it works: pinned, full-screen chapters -->
+      <section class="how" id="how" aria-labelledby="how-title">
+        <div class="how__intro section">
+          <p class="eyebrow mono">How it works</p>
+          <h2 class="section-title display" id="how-title" data-reveal>From your servers to the mountain, in four steps.</h2>
+        </div>
+
+        <div class="how__track" data-how-track>
+          <div class="how__pin">
+            <div class="how__media is-active" data-step-media="0"><canvas data-encode-canvas></canvas></div>
+            <div class="how__media" data-step-media="1">
+              <video src="/media/video/etch.mp4" poster="/media/video/etch-poster.jpg" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="how__media" data-step-media="2"><img src="/media/img/seal.webp" alt="" loading="lazy" /></div>
+            <div class="how__media" data-step-media="3">
+              <video src="/media/video/retrieve.mp4" poster="/media/video/retrieve-poster.jpg" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="how__shade" aria-hidden="true"></div>
+
+            <ol class="how__steps">
+              <li class="how-step is-active" data-step="0">
+                <span class="how-step__num mono">Step 01 / 04</span>
+                <h3 class="how-step__title display">Encode</h3>
+                <p class="how-step__text">We turn your files into a self-checking pattern, with a picture guide at the start of every plate that explains how to read it.</p>
+                <p class="how-step__meta mono">Any format · 3× error correction</p>
+              </li>
+              <li class="how-step" data-step="1">
+                <span class="how-step__num mono">Step 02 / 04</span>
+                <h3 class="how-step__title display">Etch</h3>
+                <p class="how-step__text">A femtosecond laser writes the pattern inside fused quartz. The finished plate survives fire, water, magnets and time.</p>
+                <p class="how-step__meta mono">360 TB per plate · 1.2 TB per hour</p>
+              </li>
+              <li class="how-step" data-step="2">
+                <span class="how-step__num mono">Step 03 / 04</span>
+                <h3 class="how-step__title display">Seal</h3>
+                <p class="how-step__text">Plates travel in argon-filled cassettes to Vault 01, a chamber cut 1,200 metres into the mountain, and are sealed in.</p>
+                <p class="how-step__meta mono">−4 °C · no power · no network</p>
+              </li>
+              <li class="how-step" data-step="3">
+                <span class="how-step__num mono">Step 04 / 04</span>
+                <h3 class="how-step__title display">Retrieve</h3>
+                <p class="how-step__text">Ask for a copy and get it in 48 hours. Or, a thousand years from now, read the plate with any optical microscope.</p>
+                <p class="how-step__meta mono">48 h retrieval · no LITHIC required</p>
+              </li>
+            </ol>
+
+            <nav class="how__progress" aria-label="Steps">
+              <button type="button" data-step-go="0"><span class="how__bar"><i data-step-bar></i></span><span class="mono">01 <span class="how__label">Encode</span></span></button>
+              <button type="button" data-step-go="1"><span class="how__bar"><i data-step-bar></i></span><span class="mono">02 <span class="how__label">Etch</span></span></button>
+              <button type="button" data-step-go="2"><span class="how__bar"><i data-step-bar></i></span><span class="mono">03 <span class="how__label">Seal</span></span></button>
+              <button type="button" data-step-go="3"><span class="how__bar"><i data-step-bar></i></span><span class="mono">04 <span class="how__label">Retrieve</span></span></button>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+      <!-- Who it's for -->
+      <section class="who section" id="who" aria-labelledby="who-title">
+        <div class="section-head">
+          <p class="eyebrow mono">Who it’s for</p>
+          <h2 class="section-title display" id="who-title" data-reveal>For records that must outlive their keepers.</h2>
+        </div>
+        <ul class="who__grid">
+          <li class="use-card" data-reveal>
+            <div class="use-card__image"><img src="/media/img/use-archives.webp" alt="Shelves of labelled archive boxes" loading="lazy" /></div>
+            <h3 class="use-card__title">National archives</h3>
+            <p class="use-card__text">Constitutions, land registries and court records, kept beyond the reach of any one government.</p>
+            <p class="use-card__meta mono">Typical volume · 100–900 TB</p>
+          </li>
+          <li class="use-card" data-reveal>
+            <div class="use-card__image"><img src="/media/img/use-libraries.webp" alt="A dim library with walls of books" loading="lazy" /></div>
+            <h3 class="use-card__title">Libraries &amp; museums</h3>
+            <p class="use-card__text">Digitised collections, film archives and the grammars of endangered languages.</p>
+            <p class="use-card__meta mono">Typical volume · 20–400 TB</p>
+          </li>
+          <li class="use-card" data-reveal>
+            <div class="use-card__image"><img src="/media/img/use-science.webp" alt="Glass bottles of seeds on a dark shelf" loading="lazy" /></div>
+            <h3 class="use-card__title">Science &amp; genomics</h3>
+            <p class="use-card__text">Climate baselines, seed genomes and sky surveys: data we only get to collect once.</p>
+            <p class="use-card__meta mono">Typical volume · 50–2,000 TB</p>
+          </li>
+          <li class="use-card" data-reveal>
+            <div class="use-card__image"><img src="/media/img/use-families.webp" alt="Hands turning the pages of an old photo album" loading="lazy" /></div>
+            <h3 class="use-card__title">Families</h3>
+            <p class="use-card__text">Photographs, letters and recorded voices. One tile per family, one key per generation.</p>
+            <p class="use-card__meta mono">Typical volume · up to 100 GB</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- The vault -->
+      <section class="vault" id="vault" aria-labelledby="vault-title" data-vault>
+        <div class="vault__hero">
+          <img class="vault__image" src="/media/img/vault.webp" alt="A lit tunnel cut through raw rock" loading="lazy" data-vault-image />
+          <div class="vault__overlay">
+            <p class="eyebrow mono">The vault</p>
+            <h2 class="vault__title display" id="vault-title" data-reveal>1,200 metres of granite.<br />Zero moving parts.</h2>
+          </div>
+        </div>
+        <div class="vault__details section">
+          <dl class="vault__facts">
+            <div><dt class="mono">Depth</dt><dd>1,200 m</dd></div>
+            <div><dt class="mono">Temperature</dt><dd>−4 °C, year-round</dd></div>
+            <div><dt class="mono">Bedrock</dt><dd>Stable for 1.8 bn years</dd></div>
+            <div><dt class="mono">Access</dt><dd>Three custodians, two keys</dd></div>
+          </dl>
+          <figure class="vault__figure">
+            <svg class="vault__svg" viewBox="0 0 800 640" role="img" aria-labelledby="vault-svg-title" data-vault-svg>
+              <title id="vault-svg-title">Cross-section of the mountain with Vault 01 at a depth of 1,200 metres</title>
+              <defs>
+                <pattern id="rock" width="9" height="9" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="0.9" />
+                </pattern>
+              </defs>
+              <path class="vault__mass" d="M80 200 L150 170 L210 120 L270 135 L330 90 L390 72 L440 60 L500 78 L560 70 L620 110 L690 130 L760 180 L760 620 L80 620 Z" />
+              <g class="vault__strata" data-vault-fade>
+                <path d="M80 270 C 260 245, 540 290, 760 258" />
+                <path d="M80 380 C 300 400, 520 352, 760 384" />
+                <path d="M80 490 C 260 470, 560 510, 760 478" />
+                <text x="760" y="248" text-anchor="end">MORAINE</text>
+                <text x="760" y="374" text-anchor="end">GNEISS</text>
+                <text x="760" y="468" text-anchor="end">GRANITE · 1.8 BN YRS</text>
+              </g>
+              <g class="vault__scale" data-vault-fade>
+                <line x1="40" y1="60" x2="40" y2="580" />
+                <line x1="34" y1="60" x2="46" y2="60" /><text x="54" y="64">0 M</text>
+                <line x1="34" y1="190" x2="46" y2="190" /><text x="54" y="194">300</text>
+                <line x1="34" y1="320" x2="46" y2="320" /><text x="54" y="324">600</text>
+                <line x1="34" y1="450" x2="46" y2="450" /><text x="54" y="454">900</text>
+                <line x1="34" y1="580" x2="46" y2="580" /><text x="54" y="584">1,200</text>
+              </g>
+              <path class="vault__ridge" data-draw d="M80 200 L150 170 L210 120 L270 135 L330 90 L390 72 L440 60 L500 78 L560 70 L620 110 L690 130 L760 180" />
+              <path class="vault__shaft" data-draw d="M440 60 L440 560" />
+              <rect class="vault__chamber" data-vault-chamber x="380" y="560" width="120" height="40" />
+              <rect class="vault__capsule" data-vault-capsule x="436" y="60" width="8" height="14" />
+              <text class="vault__tag" x="516" y="584" data-vault-fade>VAULT 01 · −1,200 M</text>
+            </svg>
+          </figure>
+        </div>
+      </section>
+
+      <!-- The last mile -->
+      <section class="mile" id="expedition" aria-labelledby="mile-title">
+        <div class="mile__hero">
+          <video class="mile__video" src="/media/video/expedition.mp4" poster="/media/video/expedition-poster.jpg" muted loop playsinline preload="none" data-autoplay aria-hidden="true"></video>
+          <div class="mile__overlay">
+            <p class="eyebrow mono">The last mile</p>
+            <h2 class="mile__title display" id="mile-title" data-reveal>Every plate goes up<br />the mountain on foot.</h2>
+            <p class="section-lead" data-reveal>
+              There is no road to the vault portal. Plates travel the final 900 metres in sealed cassettes, carried by
+              certified mountain guides. In winter, on skis.
+            </p>
+          </div>
+          <ul class="mile__stats" aria-label="The last mile in numbers">
+            <li><strong>900 m</strong><span>of vertical gain</span></li>
+            <li><strong>6 h</strong><span>from road end to portal</span></li>
+            <li><strong>4 guides</strong><span>on every delivery</span></li>
+            <li><strong>−24 °C</strong><span>coldest delivery so far</span></li>
+          </ul>
+        </div>
+
+        <div class="route section">
+          <div class="section-head">
+            <p class="eyebrow mono">The route</p>
+            <h3 class="section-title display" data-reveal>From road end to vault portal.</h3>
+          </div>
+          <figure class="route__figure" data-route>
+            <svg class="route__svg" viewBox="0 0 1200 360" role="img" aria-labelledby="route-svg-title">
+              <title id="route-svg-title">Elevation profile of the route, climbing from 1,340 metres at the road end to 2,240 metres at the vault portal</title>
+              <defs>
+                <pattern id="route-rock" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.9" /></pattern>
+              </defs>
+              <g class="route__grid">
+                <line x1="40" y1="330" x2="1160" y2="330" /><text x="40" y="350">1,300 M</text>
+                <line x1="40" y1="190" x2="1160" y2="190" /><text x="40" y="182">1,800 M</text>
+                <line x1="40" y1="50" x2="1160" y2="50" /><text x="40" y="42">2,300 M</text>
+              </g>
+              <path class="route__ground" d="M60 318.8 L140 305 L210 290 L260 282 L330 250 L380 232 L420 215.2 L480 205 L540 190 L600 165 L660 158 L720 140 L780 128 L820 117.2 L880 110 L940 96 L1000 92 L1060 78 L1100 72 L1140 66.8 L1160 64 L1160 330 L60 330 Z" />
+              <path class="route__trail" d="M60 318.8 L140 305 L210 290 L260 282 L330 250 L380 232 L420 215.2 L480 205 L540 190 L600 165 L660 158 L720 140 L780 128 L820 117.2 L880 110 L940 96 L1000 92 L1060 78 L1100 72 L1140 66.8" />
+              <path class="route__done" data-route-done d="M60 318.8 L140 305 L210 290 L260 282 L330 250 L380 232 L420 215.2 L480 205 L540 190 L600 165 L660 158 L720 140 L780 128 L820 117.2 L880 110 L940 96 L1000 92 L1060 78 L1100 72 L1140 66.8" />
+              <g class="route__point" data-route-point="0"><circle cx="60" cy="318.8" r="6" /><text x="60" y="300" text-anchor="middle">01</text></g>
+              <g class="route__point" data-route-point="1"><circle cx="420" cy="215.2" r="6" /><text x="420" y="197" text-anchor="middle">02</text></g>
+              <g class="route__point" data-route-point="2"><circle cx="820" cy="117.2" r="6" /><text x="820" y="99" text-anchor="middle">03</text></g>
+              <g class="route__point" data-route-point="3"><circle cx="1140" cy="66.8" r="6" /><text x="1140" y="48" text-anchor="middle">04</text></g>
+              <circle class="route__marker" data-route-marker cx="60" cy="318.8" r="8" />
+            </svg>
+            <ol class="route__stops">
+              <li data-route-stop="0"><span class="mono">01 · 1,340 m · 06:00</span><h4>Road end</h4><p>Cassettes come off the trucks at dawn. Each guide carries two.</p></li>
+              <li data-route-stop="1"><span class="mono">02 · 1,710 m · 08:30</span><h4>Moraine camp</h4><p>Radio check with the vault. The weather window is confirmed, or the team turns back.</p></li>
+              <li data-route-stop="2"><span class="mono">03 · 2,060 m · 10:45</span><h4>Sorvald ridge</h4><p>Fixed ropes along the ridge. In winter, skins and crampons.</p></li>
+              <li data-route-stop="3"><span class="mono">04 · 2,240 m · 12:10</span><h4>Vault portal</h4><p>Handover to the custodians. The door closes behind the cassettes.</p></li>
+            </ol>
+          </figure>
+        </div>
+
+        <div class="kit" aria-labelledby="kit-title">
+          <div class="kit__head section">
+            <p class="eyebrow mono">The kit</p>
+            <h3 class="section-title display" id="kit-title" data-reveal>Our teams climb in gear by</h3>
+          </div>
+          <div class="brand-marquee" data-velocity-marquee>
+            <ul class="brand-marquee__track" data-marquee-track>
+              <li class="brand-marquee__item"><span class="kit__brand kit__brand--heavy">Petzl</span></li>
+              <li class="brand-marquee__item"><span class="kit__brand kit__brand--wide">Norrøna</span></li>
+              <li class="brand-marquee__item"><span class="kit__brand">Bergans</span></li>
+              <li class="brand-marquee__item"><span class="kit__brand kit__brand--condensed">Helly Hansen</span></li>
+              <li class="brand-marquee__item"><span class="kit__brand kit__brand--wide">Mammut</span></li>
+              <li class="brand-marquee__item"><span class="kit__brand kit__brand--condensed">Black Diamond</span></li>
+            </ul>
+          </div>
+          <p class="kit__disclaimer section">
+            Brand names belong to their owners and are used for illustration only. LITHIC is a fictional company with no
+            affiliation to these brands.
+          </p>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section class="pricing section" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-head">
+          <p class="eyebrow mono">Pricing</p>
+          <h2 class="section-title display" id="pricing-title" data-reveal>Pay once. Keep it for a hundred centuries.</h2>
+        </div>
+        <ul class="plans">
+          <li class="plan" data-reveal>
+            <h3 class="plan__name mono">Legacy</h3>
+            <p class="plan__for">For families</p>
+            <p class="plan__price"><span>€1,900</span> one-time</p>
+            <ul class="plan__features">
+              <li>One 30 × 30 mm tile, up to 100 GB</li>
+              <li>Photos, letters and recorded voices</li>
+              <li>Printed certificate and reading guide</li>
+              <li>Retrieval on request</li>
+            </ul>
+            <a class="btn" href="#contact">Reserve a tile</a>
+          </li>
+          <li class="plan plan--featured" data-reveal>
+            <h3 class="plan__name mono">Institution</h3>
+            <p class="plan__for">For archives, libraries and labs</p>
+            <p class="plan__price"><span>€48,000</span> per plate</p>
+            <ul class="plan__features">
+              <li>120 × 120 mm plate, 360 TB</li>
+              <li>Annual integrity audit</li>
+              <li>48-hour certified retrieval</li>
+              <li>Dual custody keys</li>
+            </ul>
+            <a class="btn btn--solid" href="#contact">Talk to us</a>
+          </li>
+          <li class="plan" data-reveal>
+            <h3 class="plan__name mono">Sovereign</h3>
+            <p class="plan__for">For nations and treaties</p>
+            <p class="plan__price"><span>Custom</span></p>
+            <ul class="plan__features">
+              <li>Dedicated sealed chamber</li>
+              <li>On-site inspection rights</li>
+              <li>Replication across two vaults</li>
+              <li>Treaty-grade custody terms</li>
+            </ul>
+            <a class="btn" href="#contact">Contact us</a>
+          </li>
+        </ul>
+        <p class="plans__note">All plans include transport, sealing and 10,000-year custody. Prices are illustrative.</p>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq section" id="faq" aria-labelledby="faq-title">
+        <div class="section-head">
+          <p class="eyebrow mono">FAQ</p>
+          <h2 class="section-title display" id="faq-title" data-reveal>Good questions.</h2>
+        </div>
+        <div class="faq__list">
+          <details class="faq__item">
+            <summary>What happens if LITHIC closes down?</summary>
+            <p>Custody passes to an independent trust funded at signing. And every plate carries its own reading instructions, so no LITHIC software is ever needed to read it.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How do I get my data back?</summary>
+            <p>Request a retrieval and we return a certified copy within 48 hours. In the far future, an optical microscope and the picture guide etched on every plate are enough.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Is it secure?</summary>
+            <p>You can encrypt data before it is etched. The vault has no network connection at all, and opening it takes three custodians and two physical keys.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Can data be changed or deleted?</summary>
+            <p>No. Etching is permanent, which is the point. For collections that keep growing, we etch new plates on a schedule.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How much fits on one plate?</summary>
+            <p>Up to 360 TB on a 120 × 120 mm plate. Family tiles are smaller and hold up to 100 GB.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Why a mountain in Norway?</summary>
+            <p>Bedrock that has been stable for 1.8 billion years, a constant −4 °C, low seismic risk and a strong rule of law.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Write ahead -->
+      <section class="message section" id="message" aria-labelledby="message-title">
+        <div class="message__intro">
+          <p class="eyebrow mono">Try it</p>
+          <h2 class="section-title display" id="message-title">Leave a line for the year <span data-future-year>12026</span>.</h2>
+          <p class="section-lead">Type a message and watch the laser etch it into a plate. It stays in your browser.</p>
+        </div>
+        <div class="message__plate">
+          <div class="plate">
+            <p class="plate__meta mono"><span>Plate Nº <span data-plate-id>000001</span></span><span>Fused quartz · 120 × 120 mm</span></p>
+            <canvas class="plate__canvas" data-message-canvas aria-hidden="true"></canvas>
+            <p class="plate__status mono" data-message-status role="status">Ready to etch</p>
+          </div>
+          <form class="message__form" data-message-form>
+            <label class="visually-hidden" for="message-input">Your message</label>
+            <input class="message__input" id="message-input" name="message" type="text" maxlength="40" autocomplete="off" placeholder="Hello from 2026" />
+            <button class="btn btn--laser" type="submit">Etch &amp; seal</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact section" id="contact" aria-labelledby="contact-title">
+        <div class="contact__intro">
+          <p class="eyebrow mono">Request a vault</p>
+          <h2 class="contact__title display" id="contact-title">Some things should outlast us.</h2>
+          <p class="section-lead">Tell us what you need to keep. We reply within 48 hours.</p>
+          <p class="contact__direct mono">Or write to <a href="mailto:access@lithic.example">access@lithic.example</a></p>
+        </div>
+        <form class="contact__form" data-contact-form novalidate>
+          <div class="field">
+            <label for="c-name">Name</label>
+            <input id="c-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="c-org">Organisation <span>(optional)</span></label>
+            <input id="c-org" name="organisation" type="text" autocomplete="organization" />
+          </div>
+          <div class="field field--wide">
+            <label for="c-email">Email</label>
+            <input id="c-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="c-type">What do you want to keep?</label>
+            <select id="c-type" name="type">
+              <option>Family archive</option>
+              <option selected>Institutional archive</option>
+              <option>Sovereign records</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-volume">Approximate volume</label>
+            <select id="c-volume" name="volume">
+              <option>Under 1 TB</option>
+              <option selected>1–100 TB</option>
+              <option>100 TB – 1 PB</option>
+              <option>Over 1 PB</option>
+            </select>
+          </div>
+          <div class="field field--wide">
+            <label for="c-message">Anything else? <span>(optional)</span></label>
+            <textarea id="c-message" name="message" rows="4"></textarea>
+          </div>
+          <div class="contact__submit field--wide">
+            <button class="btn btn--solid" type="submit">Send request <span aria-hidden="true">→</span></button>
+            <p class="contact__status" data-contact-status role="status"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="mono footer__heading">LITHIC Archive</p>
+          <p>Vault 01, Norway</p>
+          <p><a href="mailto:access@lithic.example">access@lithic.example</a></p>
+        </div>
+        <nav class="footer__col footer__nav" aria-label="Footer">
+          <p class="mono footer__heading">Explore</p>
+          <a href="#how">How it works</a>
+          <a href="#who">Who it’s for</a>
+          <a href="#vault">The vault</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div class="footer__col footer__legal">
+          <p class="mono footer__heading">About this site</p>
+          <p>
+            LITHIC is a fictional company. This is a concept website made for a portfolio by a human and Claude, 2026.
+            Nothing here is a real offer. Brand names belong to their owners and imply no affiliation.
+          </p>
+          <details class="footer__credits">
+            <summary class="mono">Photo &amp; video credits</summary>
+            <p>
+              Pexels: Traveling on the Go, YIHAI LASER, Kindel Media, Florian Delée, Olha Ruskykh. Unsplash: Yosuke
+              Ota, T. Selin Erkan, Nikolai Sidorov, Laura Fuhrman. Fonts: Archivo, Martian Mono (SIL OFL).
+            </p>
+          </details>
+        </div>
+        <a class="mono footer__top" href="#top">Back to top ↑</a>
+      </div>
+      <p class="footer__wordmark display" aria-hidden="true">LITHIC</p>
+    </footer>
+  </body>
+</html>

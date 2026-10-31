@@ -1,0 +1,15 @@
+{
+  "name": "unversal",
+  "private": true,
+  "description": "Portfolio of websites made by a human and Claude",
+  "packageManager": "pnpm@12.16.1",
+  "scripts": {
+    "dev:lithic": "pnpm --filter lithic dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "shot": "node tools/shot.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}

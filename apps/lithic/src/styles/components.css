@@ -1,0 +1,446 @@
+/* ---------- Loader ---------- */
+.loader {
+  display: none;
+}
+
+.js .loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: var(--gutter);
+  background: var(--night);
+}
+
+.loader__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--bone-500);
+}
+
+.loader__stage {
+  position: relative;
+  margin-block: auto;
+}
+
+.loader__title {
+  font-family: var(--font-display);
+  font-size: 19.5vw;
+  font-stretch: 125%;
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  text-align: center;
+  clip-path: inset(0 100% 0 0);
+}
+
+.loader__laser {
+  position: absolute;
+  top: -8%;
+  bottom: -8%;
+  left: 0;
+  width: 2px;
+  background: var(--laser);
+  box-shadow:
+    0 0 10px var(--laser),
+    0 0 40px var(--laser);
+}
+
+.loader__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.loader__count {
+  min-width: 6ch;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--bone-100);
+}
+
+.loader__enter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.loader__enter[hidden] {
+  display: none;
+}
+
+.loader__hint {
+  color: var(--bone-500);
+}
+
+.loader__bar {
+  height: 1px;
+  background: var(--line);
+}
+
+.loader__bar span {
+  display: block;
+  height: 100%;
+  background: var(--laser);
+  box-shadow: 0 0 12px var(--laser);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@media (max-width: 700px) {
+  .loader__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- WebGL canvas ---------- */
+.experience {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.no-webgl .experience {
+  display: none;
+}
+
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: var(--header-h);
+  padding-inline: var(--gutter);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.5s,
+    border-color 0.5s,
+    transform 0.7s var(--ease-out);
+}
+
+.header.is-solid {
+  background: rgb(6 8 11 / 0.78);
+  border-bottom-color: var(--line);
+  backdrop-filter: blur(16px);
+}
+
+.header.is-hidden {
+  transform: translateY(-100%);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+}
+
+.logo svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--bone-100);
+}
+
+.logo__bit {
+  fill: var(--laser);
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.nav a,
+.footer__nav a {
+  position: relative;
+  width: fit-content;
+  font-size: 0.9rem;
+  color: var(--bone-300);
+  transition: color 0.3s;
+}
+
+.nav a::after,
+.footer__nav a::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.nav a:hover,
+.footer__nav a:hover {
+  color: var(--bone-100);
+}
+
+.nav a:hover::after,
+.footer__nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 1000px) {
+  .nav,
+  .sound-toggle [data-sound-label] {
+    display: none;
+  }
+
+  .sound-toggle {
+    margin-left: auto;
+    padding: 0.75rem;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.45s var(--ease-out),
+    border-color 0.45s;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--bone-100);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: var(--night);
+  border-color: var(--bone-100);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+.btn--small {
+  padding: 0.7rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+.btn--solid {
+  border-color: var(--bone-100);
+  background: var(--bone-100);
+  color: var(--night);
+}
+
+.btn--solid::before {
+  background: var(--laser);
+}
+
+.btn--solid:hover,
+.btn--solid:focus-visible {
+  border-color: var(--laser);
+  color: var(--night);
+}
+
+.btn--laser {
+  border-color: var(--laser);
+}
+
+.btn--laser::before {
+  background: var(--laser);
+}
+
+.btn--laser:hover,
+.btn--laser:focus-visible {
+  border-color: var(--laser);
+}
+
+/* ---------- Text roles ---------- */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--bone-500);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--laser);
+}
+
+.section {
+  width: min(100%, var(--max));
+  margin-inline: auto;
+  padding: var(--section-space) var(--gutter);
+}
+
+.section-head {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 56rem;
+  margin-bottom: clamp(3rem, 7vh, 4.5rem);
+}
+
+.section-title {
+  font-size: var(--fs-display-l);
+}
+
+.section-lead {
+  max-width: 44ch;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--bone-300);
+}
+
+/* ---------- Sound toggle ---------- */
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border: 0;
+  background: none;
+  color: var(--bone-500);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sound-toggle:hover,
+.sound-toggle.is-on {
+  color: var(--bone-100);
+}
+
+.sound-toggle__bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+
+.sound-toggle__bars i {
+  width: 2px;
+  height: 3px;
+  background: currentColor;
+}
+
+.sound-toggle.is-on .sound-toggle__bars i {
+  animation: eq 0.9s ease-in-out infinite alternate;
+}
+
+.sound-toggle__bars i:nth-child(2) {
+  animation-delay: -0.35s;
+}
+
+.sound-toggle__bars i:nth-child(3) {
+  animation-delay: -0.6s;
+}
+
+.sound-toggle__bars i:nth-child(4) {
+  animation-delay: -0.15s;
+}
+
+@keyframes eq {
+  to {
+    height: 11px;
+  }
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+}
+
+.marquee__group li {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.5rem 3rem 1.5rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
+  font-stretch: 112%;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--bone-500);
+}
+
+.marquee__group li::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--stone-700);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Reveal (class added by JS, so content never hides if scripts fail) ---------- */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
