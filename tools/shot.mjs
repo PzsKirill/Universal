@@ -1,5 +1,5 @@
 // Screenshots of a running site, section by section, in the system Edge browser.
-// Usage: node tools/shot.mjs <url> [outDir] [--mobile] [--only=hero]
+// Usage: node tools/shot.mjs <url> [outDir] [--mobile | --wide] [--only=hero]
 import { mkdir } from 'node:fs/promises'
 import { chromium } from 'playwright-core'
 
@@ -7,9 +7,10 @@ const args = process.argv.slice(2)
 const url = args.find((a) => a.startsWith('http')) ?? 'http://localhost:5173'
 const outDir = args.find((a) => !a.startsWith('http') && !a.startsWith('--')) ?? 'screenshots'
 const mobile = args.includes('--mobile')
+const wide = args.includes('--wide')
 
-const viewport = mobile ? { width: 390, height: 844 } : { width: 1440, height: 900 }
-const prefix = mobile ? 'm' : 'd'
+const viewport = mobile ? { width: 390, height: 844 } : wide ? { width: 1920, height: 1080 } : { width: 1440, height: 900 }
+const prefix = mobile ? 'm' : wide ? 'w' : 'd'
 
 // [name, selector to scroll to (null = top), extra offset in viewport heights, wait ms]
 const stops = [

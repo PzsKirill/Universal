@@ -20,6 +20,7 @@ import { initAutoplayVideos } from './modules/media'
 import { initRoute } from './modules/route'
 import { initReveal, initVaultDrawing, initVaultParallax, playIntro } from './modules/scroll-scenes'
 import { initSmoothScroll } from './modules/smooth-scroll'
+import { initTransitions } from './modules/transitions'
 import { initVelocityMarquees } from './modules/velocity-marquee'
 import { sound } from './ui/sound'
 import { initSoundUi } from './ui/sound-toggle'
@@ -68,6 +69,7 @@ async function boot() {
 
   // Pinned sections first: their pin spacing shifts every trigger below them.
   initDeepTime()
+  initTransitions()
   initReveal()
   initLifespanChart()
   initEncodeVisuals()

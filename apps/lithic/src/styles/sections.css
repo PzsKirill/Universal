@@ -1315,11 +1315,10 @@ main > section.finale {
 }
 
 /* ---------- Contact ---------- */
-.contact {
+.contact__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: clamp(2rem, 6vw, 6rem);
-  border-top: 1px solid var(--line);
 }
 
 .contact__intro {
@@ -1414,7 +1413,7 @@ main > section.finale {
 }
 
 @media (max-width: 900px) {
-  .contact {
+  .contact__inner {
     grid-template-columns: 1fr;
   }
 
@@ -1509,12 +1508,6 @@ main > section.finale {
   --line-strong: rgb(11 13 16 / 0.28);
   --laser-ink: #b23c0c; /* the laser orange, darkened enough to read as text on paper */
   color: var(--bone-100);
-}
-
-/* Full-bleed paper even when the section itself is width-limited. */
-.theme-light.section {
-  box-shadow: 0 0 0 100vmax var(--night);
-  clip-path: inset(0 -100vmax);
 }
 
 .theme-light .plan__name,
@@ -1876,4 +1869,48 @@ main > section.finale {
   font-weight: 500;
   letter-spacing: -0.035em;
   color: var(--bone-100);
+}
+
+/* ---------- Strata transitions ----------
+   Light sections are laid over the dark ones like sheets: they arrive inset with rounded top
+   corners that flatten as they reach the top (JS drives clip-path). Deep time leaves by flooding
+   its last card out to the whole screen, so it hands over to the dark section below without a seam. */
+.sheet {
+  will-change: clip-path;
+}
+
+.deep__pin {
+  position: relative;
+  isolation: isolate;
+}
+
+.deep__head,
+.deep__axis {
+  position: relative;
+  z-index: 1;
+}
+
+.deep__viewport {
+  position: relative;
+  z-index: 2;
+}
+
+.deep-card--final {
+  position: relative;
+  z-index: 1;
+}
+
+.deep-card--final > * {
+  position: relative;
+}
+
+/* Night spreading out of the 12026 card: a huge layer clipped back to the card's own box. */
+.deep-card--final::before {
+  content: '';
+  position: absolute;
+  inset: -200vh -200vw;
+  z-index: -1;
+  background: #06080b;
+  clip-path: inset(var(--flood-t, 200vh) var(--flood-r, 200vw) var(--flood-b, 200vh) var(--flood-l, 200vw));
+  pointer-events: none;
 }

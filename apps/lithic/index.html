@@ -119,63 +119,65 @@
       </section>
 
       <!-- Problem -->
-      <section class="problem section" id="why" aria-labelledby="problem-title">
-        <div class="section-head">
-          <p class="eyebrow mono">The problem</p>
-          <h2 class="section-title title--sentence" id="problem-title" data-reveal>Digital memory is fragile.</h2>
-          <p class="section-lead" data-reveal>
-            Every format we use today needs power, upkeep and a migration every few years. Miss one, and the data is
-            gone. Quartz needs nothing.
-          </p>
-        </div>
-
-        <figure class="lifespan" data-lifespan aria-labelledby="lifespan-title">
-          <figcaption class="lifespan__head">
-            <span class="lifespan__title" id="lifespan-title">Typical lifespan of storage media</span>
-            <span class="lifespan__unit mono">Years, log scale</span>
-          </figcaption>
-          <table class="lifespan__table">
-            <colgroup><col class="lifespan__col-label" /><col /></colgroup>
-            <thead class="visually-hidden">
-              <tr><th scope="col">Medium</th><th scope="col">Typical lifespan</th></tr>
-            </thead>
-            <tbody>
-              <tr data-years="5" data-note="Mechanical parts wear out; most fail within 3–5 years of service.">
-                <th scope="row">Hard drive</th>
-                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~5 years</span></div></td>
-              </tr>
-              <tr data-years="20" data-note="Recordable discs fade as their dye layer breaks down.">
-                <th scope="row">Optical disc</th>
-                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~20 years</span></div></td>
-              </tr>
-              <tr data-years="30" data-note="Rated for 30 years in climate-controlled storage, but the readers become obsolete sooner.">
-                <th scope="row">Magnetic tape</th>
-                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~30 years</span></div></td>
-              </tr>
-              <tr class="is-open" data-years="open" data-note="No physical lifespan of its own: it lasts exactly as long as the bills are paid.">
-                <th scope="row">Cloud storage</th>
-                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">Only while someone pays</span></div></td>
-              </tr>
-              <tr class="is-accent" data-years="10000" data-note="Fused quartz is chemically inert and stable at room temperature for geological time.">
-                <th scope="row">LITHIC quartz</th>
-                <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">10,000+ years</span></div></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="lifespan__axis mono" aria-hidden="true">
-            <span style="--at: 0">1</span>
-            <span style="--at: 0.25">10</span>
-            <span style="--at: 0.5">100</span>
-            <span style="--at: 0.75">1,000</span>
-            <span style="--at: 1">10,000</span>
+      <section class="problem" id="why" aria-labelledby="problem-title">
+        <div class="section problem__inner">
+          <div class="section-head">
+            <p class="eyebrow mono">The problem</p>
+            <h2 class="section-title title--sentence" id="problem-title" data-reveal>Digital memory is fragile.</h2>
+            <p class="section-lead" data-reveal>
+              Every format we use today needs power, upkeep and a migration every few years. Miss one, and the data is
+              gone. Quartz needs nothing.
+            </p>
           </div>
-          <p class="lifespan__note">Typical figures for media kept in good conditions. Hover a row for details.</p>
-          <div class="lifespan__tooltip mono" data-lifespan-tooltip role="tooltip" hidden></div>
-        </figure>
+  
+          <figure class="lifespan" data-lifespan aria-labelledby="lifespan-title">
+            <figcaption class="lifespan__head">
+              <span class="lifespan__title" id="lifespan-title">Typical lifespan of storage media</span>
+              <span class="lifespan__unit mono">Years, log scale</span>
+            </figcaption>
+            <table class="lifespan__table">
+              <colgroup><col class="lifespan__col-label" /><col /></colgroup>
+              <thead class="visually-hidden">
+                <tr><th scope="col">Medium</th><th scope="col">Typical lifespan</th></tr>
+              </thead>
+              <tbody>
+                <tr data-years="5" data-note="Mechanical parts wear out; most fail within 3–5 years of service.">
+                  <th scope="row">Hard drive</th>
+                  <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~5 years</span></div></td>
+                </tr>
+                <tr data-years="20" data-note="Recordable discs fade as their dye layer breaks down.">
+                  <th scope="row">Optical disc</th>
+                  <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~20 years</span></div></td>
+                </tr>
+                <tr data-years="30" data-note="Rated for 30 years in climate-controlled storage, but the readers become obsolete sooner.">
+                  <th scope="row">Magnetic tape</th>
+                  <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">~30 years</span></div></td>
+                </tr>
+                <tr class="is-open" data-years="open" data-note="No physical lifespan of its own: it lasts exactly as long as the bills are paid.">
+                  <th scope="row">Cloud storage</th>
+                  <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">Only while someone pays</span></div></td>
+                </tr>
+                <tr class="is-accent" data-years="10000" data-note="Fused quartz is chemically inert and stable at room temperature for geological time.">
+                  <th scope="row">LITHIC quartz</th>
+                  <td><div class="lifespan__track"><span class="lifespan__bar"></span><span class="lifespan__value">10,000+ years</span></div></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="lifespan__axis mono" aria-hidden="true">
+              <span style="--at: 0">1</span>
+              <span style="--at: 0.25">10</span>
+              <span style="--at: 0.5">100</span>
+              <span style="--at: 0.75">1,000</span>
+              <span style="--at: 1">10,000</span>
+            </div>
+            <p class="lifespan__note">Typical figures for media kept in good conditions. Hover a row for details.</p>
+            <div class="lifespan__tooltip mono" data-lifespan-tooltip role="tooltip" hidden></div>
+          </figure>
+        </div>
       </section>
 
       <!-- Deep time: pinned horizontal walk back through history -->
-      <section class="deep theme-light" id="deep-time" aria-labelledby="deep-title" data-deep>
+      <section class="deep theme-light sheet" id="deep-time" aria-labelledby="deep-title" data-deep>
         <div class="deep__pin" data-deep-pin>
           <div class="deep__head">
             <div class="deep__intro">
@@ -229,7 +231,7 @@
                 <h3 class="deep-card__title">The first farming villages</h3>
                 <p class="deep-card__text">As far behind us as a LITHIC plate reaches ahead.</p>
               </li>
-              <li class="deep-card deep-card--final" data-years="10000">
+              <li class="deep-card deep-card--final" data-years="10000" data-deep-final>
                 <p class="deep-card__eyebrow mono">And forward</p>
                 <p class="deep-card__future" data-future-year>12026</p>
                 <p class="deep-card__promise">Your plate is still readable here. Everything on this line fits inside its lifetime.</p>
@@ -298,37 +300,39 @@
       </section>
 
       <!-- Who it's for -->
-      <section class="who section" id="who" aria-labelledby="who-title">
-        <div class="section-head">
-          <p class="eyebrow mono">Who it’s for</p>
-          <h2 class="section-title title--sentence" id="who-title" data-reveal>For records that must outlive their keepers.</h2>
+      <section class="who" id="who" aria-labelledby="who-title">
+        <div class="section who__inner">
+          <div class="section-head">
+            <p class="eyebrow mono">Who it’s for</p>
+            <h2 class="section-title title--sentence" id="who-title" data-reveal>For records that must outlive their keepers.</h2>
+          </div>
+          <ul class="who__grid">
+            <li class="use-card" data-reveal>
+              <div class="use-card__image"><img src="/media/img/use-archives.webp" alt="Shelves of labelled archive boxes" loading="lazy" /></div>
+              <h3 class="use-card__title">National archives</h3>
+              <p class="use-card__text">Constitutions, land registries and court records, kept beyond the reach of any one government.</p>
+              <p class="use-card__meta mono">Typical volume · 100–900 TB</p>
+            </li>
+            <li class="use-card" data-reveal>
+              <div class="use-card__image"><img src="/media/img/use-libraries.webp" alt="A dim library with walls of books" loading="lazy" /></div>
+              <h3 class="use-card__title">Libraries &amp; museums</h3>
+              <p class="use-card__text">Digitised collections, film archives and the grammars of endangered languages.</p>
+              <p class="use-card__meta mono">Typical volume · 20–400 TB</p>
+            </li>
+            <li class="use-card" data-reveal>
+              <div class="use-card__image"><img src="/media/img/use-science.webp" alt="Glass bottles of seeds on a dark shelf" loading="lazy" /></div>
+              <h3 class="use-card__title">Science &amp; genomics</h3>
+              <p class="use-card__text">Climate baselines, seed genomes and sky surveys: data we only get to collect once.</p>
+              <p class="use-card__meta mono">Typical volume · 50–2,000 TB</p>
+            </li>
+            <li class="use-card" data-reveal>
+              <div class="use-card__image"><img src="/media/img/use-families.webp" alt="Hands turning the pages of an old photo album" loading="lazy" /></div>
+              <h3 class="use-card__title">Families</h3>
+              <p class="use-card__text">Photographs, letters and recorded voices. One tile per family, one key per generation.</p>
+              <p class="use-card__meta mono">Typical volume · up to 100 GB</p>
+            </li>
+          </ul>
         </div>
-        <ul class="who__grid">
-          <li class="use-card" data-reveal>
-            <div class="use-card__image"><img src="/media/img/use-archives.webp" alt="Shelves of labelled archive boxes" loading="lazy" /></div>
-            <h3 class="use-card__title">National archives</h3>
-            <p class="use-card__text">Constitutions, land registries and court records, kept beyond the reach of any one government.</p>
-            <p class="use-card__meta mono">Typical volume · 100–900 TB</p>
-          </li>
-          <li class="use-card" data-reveal>
-            <div class="use-card__image"><img src="/media/img/use-libraries.webp" alt="A dim library with walls of books" loading="lazy" /></div>
-            <h3 class="use-card__title">Libraries &amp; museums</h3>
-            <p class="use-card__text">Digitised collections, film archives and the grammars of endangered languages.</p>
-            <p class="use-card__meta mono">Typical volume · 20–400 TB</p>
-          </li>
-          <li class="use-card" data-reveal>
-            <div class="use-card__image"><img src="/media/img/use-science.webp" alt="Glass bottles of seeds on a dark shelf" loading="lazy" /></div>
-            <h3 class="use-card__title">Science &amp; genomics</h3>
-            <p class="use-card__text">Climate baselines, seed genomes and sky surveys: data we only get to collect once.</p>
-            <p class="use-card__meta mono">Typical volume · 50–2,000 TB</p>
-          </li>
-          <li class="use-card" data-reveal>
-            <div class="use-card__image"><img src="/media/img/use-families.webp" alt="Hands turning the pages of an old photo album" loading="lazy" /></div>
-            <h3 class="use-card__title">Families</h3>
-            <p class="use-card__text">Photographs, letters and recorded voices. One tile per family, one key per generation.</p>
-            <p class="use-card__meta mono">Typical volume · up to 100 GB</p>
-          </li>
-        </ul>
       </section>
 
       <!-- The vault -->
@@ -495,83 +499,87 @@
       </section>
 
       <!-- Pricing -->
-      <section class="pricing section theme-light" id="pricing" aria-labelledby="pricing-title">
-        <div class="section-head">
-          <p class="eyebrow mono">Pricing</p>
-          <h2 class="section-title title--sentence" id="pricing-title" data-reveal>Pay once. Keep it for a hundred centuries.</h2>
+      <section class="pricing theme-light sheet" id="pricing" aria-labelledby="pricing-title">
+        <div class="section pricing__inner">
+          <div class="section-head">
+            <p class="eyebrow mono">Pricing</p>
+            <h2 class="section-title title--sentence" id="pricing-title" data-reveal>Pay once. Keep it for a hundred centuries.</h2>
+          </div>
+          <ul class="plans">
+            <li class="plan" data-reveal>
+              <h3 class="plan__name mono">Legacy</h3>
+              <p class="plan__for">For families</p>
+              <p class="plan__price"><span>€1,900</span> one-time</p>
+              <ul class="plan__features">
+                <li>One 30 × 30 mm tile, up to 100 GB</li>
+                <li>Photos, letters and recorded voices</li>
+                <li>Printed certificate and reading guide</li>
+                <li>Retrieval on request</li>
+              </ul>
+              <a class="btn" href="#contact">Reserve a tile</a>
+            </li>
+            <li class="plan plan--featured" data-reveal>
+              <h3 class="plan__name mono">Institution</h3>
+              <p class="plan__for">For archives, libraries and labs</p>
+              <p class="plan__price"><span>€48,000</span> per plate</p>
+              <ul class="plan__features">
+                <li>120 × 120 mm plate, 360 TB</li>
+                <li>Annual integrity audit</li>
+                <li>48-hour certified retrieval</li>
+                <li>Dual custody keys</li>
+              </ul>
+              <a class="btn btn--solid" href="#contact">Talk to us</a>
+            </li>
+            <li class="plan" data-reveal>
+              <h3 class="plan__name mono">Sovereign</h3>
+              <p class="plan__for">For nations and treaties</p>
+              <p class="plan__price"><span>Custom</span></p>
+              <ul class="plan__features">
+                <li>Dedicated sealed chamber</li>
+                <li>On-site inspection rights</li>
+                <li>Replication across two vaults</li>
+                <li>Treaty-grade custody terms</li>
+              </ul>
+              <a class="btn" href="#contact">Contact us</a>
+            </li>
+          </ul>
+          <p class="plans__note">All plans include transport, sealing and 10,000-year custody. Prices are illustrative.</p>
         </div>
-        <ul class="plans">
-          <li class="plan" data-reveal>
-            <h3 class="plan__name mono">Legacy</h3>
-            <p class="plan__for">For families</p>
-            <p class="plan__price"><span>€1,900</span> one-time</p>
-            <ul class="plan__features">
-              <li>One 30 × 30 mm tile, up to 100 GB</li>
-              <li>Photos, letters and recorded voices</li>
-              <li>Printed certificate and reading guide</li>
-              <li>Retrieval on request</li>
-            </ul>
-            <a class="btn" href="#contact">Reserve a tile</a>
-          </li>
-          <li class="plan plan--featured" data-reveal>
-            <h3 class="plan__name mono">Institution</h3>
-            <p class="plan__for">For archives, libraries and labs</p>
-            <p class="plan__price"><span>€48,000</span> per plate</p>
-            <ul class="plan__features">
-              <li>120 × 120 mm plate, 360 TB</li>
-              <li>Annual integrity audit</li>
-              <li>48-hour certified retrieval</li>
-              <li>Dual custody keys</li>
-            </ul>
-            <a class="btn btn--solid" href="#contact">Talk to us</a>
-          </li>
-          <li class="plan" data-reveal>
-            <h3 class="plan__name mono">Sovereign</h3>
-            <p class="plan__for">For nations and treaties</p>
-            <p class="plan__price"><span>Custom</span></p>
-            <ul class="plan__features">
-              <li>Dedicated sealed chamber</li>
-              <li>On-site inspection rights</li>
-              <li>Replication across two vaults</li>
-              <li>Treaty-grade custody terms</li>
-            </ul>
-            <a class="btn" href="#contact">Contact us</a>
-          </li>
-        </ul>
-        <p class="plans__note">All plans include transport, sealing and 10,000-year custody. Prices are illustrative.</p>
       </section>
 
       <!-- FAQ -->
-      <section class="faq section theme-light" id="faq" aria-labelledby="faq-title">
-        <div class="section-head">
-          <p class="eyebrow mono">FAQ</p>
-          <h2 class="section-title title--sentence" id="faq-title" data-reveal>Good questions.</h2>
-        </div>
-        <div class="faq__list">
-          <details class="faq__item">
-            <summary>What happens if LITHIC closes down?</summary>
-            <p>Custody passes to an independent trust funded at signing. And every plate carries its own reading instructions, so no LITHIC software is ever needed to read it.</p>
-          </details>
-          <details class="faq__item">
-            <summary>How do I get my data back?</summary>
-            <p>Request a retrieval and we return a certified copy within 48 hours. In the far future, an optical microscope and the picture guide etched on every plate are enough.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Is it secure?</summary>
-            <p>You can encrypt data before it is etched. The vault has no network connection at all, and opening it takes three custodians and two physical keys.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Can data be changed or deleted?</summary>
-            <p>No. Etching is permanent, which is the point. For collections that keep growing, we etch new plates on a schedule.</p>
-          </details>
-          <details class="faq__item">
-            <summary>How much fits on one plate?</summary>
-            <p>Up to 360 TB on a 120 × 120 mm plate. Family tiles are smaller and hold up to 100 GB.</p>
-          </details>
-          <details class="faq__item">
-            <summary>Why a mountain in Norway?</summary>
-            <p>Bedrock that has been stable for 1.8 billion years, a constant −4 °C, low seismic risk and a strong rule of law.</p>
-          </details>
+      <section class="faq theme-light sheet" id="faq" aria-labelledby="faq-title">
+        <div class="section faq__inner">
+          <div class="section-head">
+            <p class="eyebrow mono">FAQ</p>
+            <h2 class="section-title title--sentence" id="faq-title" data-reveal>Good questions.</h2>
+          </div>
+          <div class="faq__list">
+            <details class="faq__item">
+              <summary>What happens if LITHIC closes down?</summary>
+              <p>Custody passes to an independent trust funded at signing. And every plate carries its own reading instructions, so no LITHIC software is ever needed to read it.</p>
+            </details>
+            <details class="faq__item">
+              <summary>How do I get my data back?</summary>
+              <p>Request a retrieval and we return a certified copy within 48 hours. In the far future, an optical microscope and the picture guide etched on every plate are enough.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Is it secure?</summary>
+              <p>You can encrypt data before it is etched. The vault has no network connection at all, and opening it takes three custodians and two physical keys.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Can data be changed or deleted?</summary>
+              <p>No. Etching is permanent, which is the point. For collections that keep growing, we etch new plates on a schedule.</p>
+            </details>
+            <details class="faq__item">
+              <summary>How much fits on one plate?</summary>
+              <p>Up to 360 TB on a 120 × 120 mm plate. Family tiles are smaller and hold up to 100 GB.</p>
+            </details>
+            <details class="faq__item">
+              <summary>Why a mountain in Norway?</summary>
+              <p>Bedrock that has been stable for 1.8 billion years, a constant −4 °C, low seismic risk and a strong rule of law.</p>
+            </details>
+          </div>
         </div>
       </section>
 
@@ -592,53 +600,55 @@
       </section>
 
       <!-- Contact -->
-      <section class="contact section" id="contact" aria-labelledby="contact-title">
-        <div class="contact__intro">
-          <p class="eyebrow mono">Request a vault</p>
-          <h2 class="contact__title display" id="contact-title">Some things should outlast us.</h2>
-          <p class="section-lead">Tell us what you need to keep. We reply within 48 hours.</p>
-          <p class="contact__direct mono">Or write to <a href="mailto:access@lithic.example">access@lithic.example</a></p>
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="section contact__inner">
+          <div class="contact__intro">
+            <p class="eyebrow mono">Request a vault</p>
+            <h2 class="contact__title display" id="contact-title">Some things should outlast us.</h2>
+            <p class="section-lead">Tell us what you need to keep. We reply within 48 hours.</p>
+            <p class="contact__direct mono">Or write to <a href="mailto:access@lithic.example">access@lithic.example</a></p>
+          </div>
+          <form class="contact__form" data-contact-form novalidate>
+            <div class="field">
+              <label for="c-name">Name</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="c-org">Organisation <span>(optional)</span></label>
+              <input id="c-org" name="organisation" type="text" autocomplete="organization" />
+            </div>
+            <div class="field field--wide">
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="c-type">What do you want to keep?</label>
+              <select id="c-type" name="type">
+                <option>Family archive</option>
+                <option selected>Institutional archive</option>
+                <option>Sovereign records</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-volume">Approximate volume</label>
+              <select id="c-volume" name="volume">
+                <option>Under 1 TB</option>
+                <option selected>1–100 TB</option>
+                <option>100 TB – 1 PB</option>
+                <option>Over 1 PB</option>
+              </select>
+            </div>
+            <div class="field field--wide">
+              <label for="c-message">Anything else? <span>(optional)</span></label>
+              <textarea id="c-message" name="message" rows="4"></textarea>
+            </div>
+            <div class="contact__submit field--wide">
+              <button class="btn btn--solid" type="submit">Send request <span aria-hidden="true">→</span></button>
+              <p class="contact__status" data-contact-status role="status"></p>
+            </div>
+          </form>
         </div>
-        <form class="contact__form" data-contact-form novalidate>
-          <div class="field">
-            <label for="c-name">Name</label>
-            <input id="c-name" name="name" type="text" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="c-org">Organisation <span>(optional)</span></label>
-            <input id="c-org" name="organisation" type="text" autocomplete="organization" />
-          </div>
-          <div class="field field--wide">
-            <label for="c-email">Email</label>
-            <input id="c-email" name="email" type="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="c-type">What do you want to keep?</label>
-            <select id="c-type" name="type">
-              <option>Family archive</option>
-              <option selected>Institutional archive</option>
-              <option>Sovereign records</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="c-volume">Approximate volume</label>
-            <select id="c-volume" name="volume">
-              <option>Under 1 TB</option>
-              <option selected>1–100 TB</option>
-              <option>100 TB – 1 PB</option>
-              <option>Over 1 PB</option>
-            </select>
-          </div>
-          <div class="field field--wide">
-            <label for="c-message">Anything else? <span>(optional)</span></label>
-            <textarea id="c-message" name="message" rows="4"></textarea>
-          </div>
-          <div class="contact__submit field--wide">
-            <button class="btn btn--solid" type="submit">Send request <span aria-hidden="true">→</span></button>
-            <p class="contact__status" data-contact-status role="status"></p>
-          </div>
-        </form>
       </section>
     </main>
 

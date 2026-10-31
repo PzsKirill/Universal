@@ -2,11 +2,13 @@ import { gsap } from '../lib/gsap'
 import { reducedMotion } from '../lib/motion'
 
 const numberFormat = new Intl.NumberFormat('en-US')
+const FLOOD_SHARE = 0.35 // the flood takes this much extra scroll, relative to the sideways travel
 
 /**
  * Deep time: the section pins and vertical scrolling slides a row of moments sideways,
- * from 1969 back to the first farms. A counter tracks how many years ago the moment
- * in the middle of the screen was; the last card jumps forward to the year 12026.
+ * from 1969 back to the first farms; a counter tracks how many years ago each one was.
+ * The last card jumps forward to 12026, then its night floods out to fill the screen,
+ * handing over to the dark section below without a seam.
  */
 export function initDeepTime(): void {
   const section = document.querySelector<HTMLElement>('[data-deep]')
@@ -14,7 +16,8 @@ export function initDeepTime(): void {
   const track = section?.querySelector<HTMLElement>('[data-deep-track]')
   const counter = section?.querySelector<HTMLElement>('[data-deep-years]')
   const bar = section?.querySelector<HTMLElement>('[data-deep-progress]')
-  if (!section || !pin || !track || !counter || !bar) return
+  const final = section?.querySelector<HTMLElement>('[data-deep-final]')
+  if (!section || !pin || !track || !counter || !bar || !final) return
 
   const cards = [...track.querySelectorAll<HTMLElement>('[data-years]')]
   const years = cards.map((card) => Number(card.dataset.years))
@@ -25,13 +28,16 @@ export function initDeepTime(): void {
     return
   }
 
-  const distance = () => Math.max(track.scrollWidth - window.innerWidth, 0)
+  // Measured from the last card, not scrollWidth: the card's oversized flood layer inflates scrollWidth.
+  const distance = () => {
+    const end = final.offsetLeft + final.offsetWidth + parseFloat(getComputedStyle(track).paddingRight)
+    return Math.max(end - window.innerWidth, 0)
+  }
 
-  // Each card owns an equal slice of the scroll: the counter starts at the first moment (57 years)
-  // and reaches 10,000 as the last card arrives.
+  // Each card owns an equal slice of the travel: 57 years at the start, 10,000 at the end.
   const stops = cards.map((_, i) => i / Math.max(cards.length - 1, 1))
 
-  const update = (progress: number) => {
+  const updateTravel = (progress: number) => {
     bar.style.transform = `scaleX(${progress})`
     let value = 0
     let current = 0
@@ -52,18 +58,39 @@ export function initDeepTime(): void {
     cards.forEach((card, i) => card.classList.toggle('is-current', i === current))
   }
 
-  gsap.to(track, {
-    x: () => -distance(),
-    ease: 'none',
+  /** Grows the card's night layer from the card's own box (0) to the whole viewport (1). */
+  const updateFlood = (progress: number) => {
+    const w = window.innerWidth * 2
+    const h = window.innerHeight * 2
+    const box = final.getBoundingClientRect()
+    const lerp = (from: number, to: number) => from + (to - from) * progress
+    final.style.setProperty('--flood-t', `${lerp(h, h - box.top)}px`)
+    final.style.setProperty('--flood-l', `${lerp(w, w - box.left)}px`)
+    final.style.setProperty('--flood-r', `${lerp(w, w - (window.innerWidth - box.right))}px`)
+    final.style.setProperty('--flood-b', `${lerp(h, h - (window.innerHeight - box.bottom))}px`)
+  }
+
+  const flood = { progress: 0 }
+  const timeline = gsap.timeline({
+    defaults: { ease: 'none' },
     scrollTrigger: {
       trigger: pin,
       start: 'top top',
-      end: () => `+=${distance()}`,
+      end: () => `+=${distance() * (1 + FLOOD_SHARE)}`,
       pin: true,
       scrub: 0.8,
       invalidateOnRefresh: true,
-      onRefresh: (self) => update(self.progress),
-      onUpdate: (self) => update(self.progress),
+    },
+    onUpdate: () => {
+      const travel = distance() ? -Number(gsap.getProperty(track, 'x')) / distance() : 0
+      updateTravel(Math.min(Math.max(travel, 0), 1))
+      updateFlood(flood.progress)
     },
   })
+  timeline
+    .to(track, { x: () => -distance(), duration: 1 })
+    .to(flood, { progress: 1, duration: FLOOD_SHARE, ease: 'power2.in' })
+    .to({}, { duration: 0.08 }) // hold on full night so smoothing can't unpin over a sliver of paper
+
+  updateTravel(0)
 }
