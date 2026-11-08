@@ -330,7 +330,11 @@ main,
 }
 
 .section-title {
-  font-size: var(--fs-display-l);
+  font-size: var(--fs-h2);
+}
+
+.section-title--h3 {
+  font-size: var(--fs-h3);
 }
 
 .section-lead {

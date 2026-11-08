@@ -464,7 +464,7 @@
         <div class="kit" aria-labelledby="kit-title">
           <div class="kit__head section">
             <p class="eyebrow mono">The kit</p>
-            <h3 class="section-title display" id="kit-title" data-reveal>Our teams climb in gear by</h3>
+            <h3 class="section-title section-title--h3 display" id="kit-title" data-reveal>Our teams climb in gear by</h3>
           </div>
           <div class="brand-marquee" data-velocity-marquee>
             <ul class="brand-marquee__track" data-marquee-track>
@@ -582,7 +582,7 @@
               <summary class="faq__summary">
                 <span class="faq__num mono">01</span>
                 <span class="faq__question">What happens if LITHIC closes down?</span>
-                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+                <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="faq__icon-h" d="M5 12h14" /><path class="faq__icon-v" d="M12 5v14" /></svg></span>
               </summary>
               <div class="faq__answer" data-faq-answer>
                 <p>Custody passes to an independent trust funded at signing. And every plate carries its own reading instructions, so no LITHIC software is ever needed to read it.</p>
@@ -592,7 +592,7 @@
               <summary class="faq__summary">
                 <span class="faq__num mono">02</span>
                 <span class="faq__question">How do I get my data back?</span>
-                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+                <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="faq__icon-h" d="M5 12h14" /><path class="faq__icon-v" d="M12 5v14" /></svg></span>
               </summary>
               <div class="faq__answer" data-faq-answer>
                 <p>Request a retrieval and we return a certified copy within 48 hours. In the far future, an optical microscope and the picture guide etched on every plate are enough.</p>
@@ -602,7 +602,7 @@
               <summary class="faq__summary">
                 <span class="faq__num mono">03</span>
                 <span class="faq__question">Is it secure?</span>
-                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+                <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="faq__icon-h" d="M5 12h14" /><path class="faq__icon-v" d="M12 5v14" /></svg></span>
               </summary>
               <div class="faq__answer" data-faq-answer>
                 <p>You can encrypt data before it is etched. The vault has no network connection at all, and opening it takes three custodians and two physical keys.</p>
@@ -612,7 +612,7 @@
               <summary class="faq__summary">
                 <span class="faq__num mono">04</span>
                 <span class="faq__question">Can data be changed or deleted?</span>
-                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+                <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="faq__icon-h" d="M5 12h14" /><path class="faq__icon-v" d="M12 5v14" /></svg></span>
               </summary>
               <div class="faq__answer" data-faq-answer>
                 <p>No. Etching is permanent, which is the point. For collections that keep growing, we etch new plates on a schedule.</p>
@@ -622,7 +622,7 @@
               <summary class="faq__summary">
                 <span class="faq__num mono">05</span>
                 <span class="faq__question">How much fits on one plate?</span>
-                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+                <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="faq__icon-h" d="M5 12h14" /><path class="faq__icon-v" d="M12 5v14" /></svg></span>
               </summary>
               <div class="faq__answer" data-faq-answer>
                 <p>Up to 360 TB on a 120 × 120 mm plate. Family tiles are smaller and hold up to 100 GB.</p>
@@ -632,7 +632,7 @@
               <summary class="faq__summary">
                 <span class="faq__num mono">06</span>
                 <span class="faq__question">Why a mountain in Norway?</span>
-                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+                <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="faq__icon-h" d="M5 12h14" /><path class="faq__icon-v" d="M12 5v14" /></svg></span>
               </summary>
               <div class="faq__answer" data-faq-answer>
                 <p>Bedrock that has been stable for 1.8 billion years, a constant −4 °C, low seismic risk and a strong rule of law.</p>
@@ -712,38 +712,61 @@
     </main>
 
     <footer class="footer">
-      <div class="footer__cols">
-        <div class="footer__col">
-          <p class="mono footer__heading">LITHIC Archive</p>
-          <p>Vault 01, Norway</p>
-          <p><a href="mailto:access@lithic.example">access@lithic.example</a></p>
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="logo" href="#top" aria-label="LITHIC, back to top">
+            <svg viewBox="0 0 18 18" aria-hidden="true">
+              <circle cx="3" cy="3" r="1.5" /><circle cx="9" cy="3" r="1.5" /><circle cx="15" cy="3" r="1.5" />
+              <circle cx="3" cy="9" r="1.5" /><circle cx="15" cy="9" r="1.5" />
+              <circle cx="3" cy="15" r="1.5" /><circle cx="9" cy="15" r="1.5" />
+              <circle class="logo__bit" cx="15" cy="15" r="2" />
+            </svg>
+            LITHIC
+          </a>
+          <p class="footer__tagline">Deep-time data storage. Sealed in 2026, readable in <span data-future-year>12026</span>.</p>
+          <a class="btn btn--small" href="#contact">Request a vault <span aria-hidden="true">→</span></a>
         </div>
+
         <nav class="footer__col footer__nav" aria-label="Footer">
-          <p class="mono footer__heading">Explore</p>
+          <p class="footer__heading mono">Explore</p>
           <a href="#how">How it works</a>
           <a href="#who">Who it’s for</a>
           <a href="#vault">The vault</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <div class="footer__col footer__legal">
-          <p class="mono footer__heading">About this site</p>
+
+        <div class="footer__col">
+          <p class="footer__heading mono">Contact</p>
+          <p>Vault 01, Sorvald<br />Troms, Norway</p>
+          <p><a class="footer__link" href="mailto:access@lithic.example">access@lithic.example</a></p>
+        </div>
+
+        <div class="footer__col footer__about">
+          <p class="footer__heading mono">About this site</p>
           <p>
-            LITHIC is a fictional company. This is a concept website made for a portfolio by a human and Claude, 2026.
-            Nothing here is a real offer. Brand names belong to their owners and imply no affiliation.
+            LITHIC is a fictional company. This is a concept website made for a portfolio. Nothing here is a real offer.
+            Brand names belong to their owners and imply no affiliation.
           </p>
           <details class="footer__credits">
-            <summary class="mono">Photo &amp; video credits</summary>
-            <p>
-              Pexels: Traveling on the Go, YIHAI LASER, Kindel Media, Florian Delée, Olha Ruskykh. Unsplash: Yosuke
-              Ota, T. Selin Erkan, Nikolai Sidorov, Laura Fuhrman. Moon photo: NASA. Harbour: therato (Pexels). Ledger: Magic Fan (Unsplash). Gutenberg Bible: Daderot (CC0). Cuneiform tablet: The Metropolitan Museum of Art (CC0). Pexels: maceiras, Diego F. Parra. Unsplash: Dave LZ. Fonts: Archivo, Martian Mono (SIL OFL).
-            </p>
-          </details>
+              <summary class="mono">Photo &amp; video credits</summary>
+              <p>
+                Pexels: Traveling on the Go, YIHAI LASER, Kindel Media, Florian Delée, Olha Ruskykh. Unsplash: Yosuke
+                Ota, T. Selin Erkan, Nikolai Sidorov, Laura Fuhrman. Moon photo: NASA. Harbour: therato (Pexels). Ledger: Magic Fan (Unsplash). Gutenberg Bible: Daderot (CC0). Cuneiform tablet: The Metropolitan Museum of Art (CC0). Pexels: maceiras, Diego F. Parra. Unsplash: Dave LZ. Fonts: Archivo, Martian Mono (SIL OFL).
+              </p>
+            </details>
         </div>
-        <a class="mono footer__top" href="#top">Back to top ↑</a>
       </div>
-      <p class="footer__closing">Sealed in 2026. Readable in <span data-future-year>12026</span>.</p>
-      <p class="footer__wordmark display" aria-hidden="true">LITHIC</p>
+
+      <div class="footer__bar mono">
+        <p>© 2026 LITHIC Archive · Concept site</p>
+        <p>Designed and built by a human and Claude</p>
+        <a class="footer__top-link" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+
+      <div class="footer__brandmark" aria-hidden="true">
+        <p class="footer__wordmark display">LITHIC</p>
+      </div>
     </footer>
   </body>
 </html>

@@ -18,6 +18,12 @@
   --font-sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
   --font-mono: 'Martian Mono Variable', ui-monospace, monospace;
 
+  /* Heading scale: nothing outranks the H1. 1920px: 78 / 61 / 40 / 26 px. 390px: 33 / 28 / 22 / 18 px. */
+  --fs-h1: clamp(2rem, 4.1vw, 4.9rem);
+  --fs-h2: clamp(1.75rem, 3.2vw, 3.75rem);
+  --fs-h3: clamp(1.35rem, 2.1vw, 2.5rem);
+  --fs-h4: clamp(1.1rem, 1.4vw, 1.6rem);
+
   --fs-display-xl: clamp(2.4rem, 5.6vw, 6.4rem);
   --fs-display-l: clamp(1.9rem, 3.6vw, 4rem);
   --fs-display-m: clamp(1.3rem, 2vw, 2.1rem);
