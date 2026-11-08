@@ -11,6 +11,7 @@ import { gsap, ScrollTrigger } from './lib/gsap'
 import { initContactForm } from './modules/contact-form'
 import { initDeepTime } from './modules/deep-time'
 import { initEncodeVisuals } from './modules/encode-visual'
+import { initFaq } from './modules/faq'
 import { initFinale } from './modules/finale'
 import { initHeader } from './modules/header'
 import { initHowItWorks } from './modules/how-it-works'
@@ -85,6 +86,7 @@ async function boot() {
   initVaultParallax()
   initVaultDrawing()
   initFinale(experience)
+  initFaq()
   initContactForm()
   ScrollTrigger.sort()
   ScrollTrigger.refresh()

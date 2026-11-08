@@ -70,7 +70,7 @@
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero__copy">
           <p class="eyebrow mono" data-intro>Deep-time data storage · Norway</p>
-          <h1 class="hero__title display" id="hero-title" data-hero-title>Your data,<br />kept for 10,000 years.</h1>
+          <h1 class="hero__title display" id="hero-title" data-hero-title>Your data,<br />kept for<br />10,000 years.</h1>
           <p class="hero__lead" data-intro>
             We etch archives into quartz glass and seal them 1,200&nbsp;metres inside a Norwegian mountain. No power.
             No servers. No migrations. Ever.
@@ -406,38 +406,59 @@
           </ul>
         </div>
 
-        <div class="route section">
-          <div class="section-head">
-            <p class="eyebrow mono">The route</p>
-            <h3 class="section-title display" data-reveal>From road end to vault portal.</h3>
-          </div>
-          <figure class="route__figure" data-route>
-            <svg class="route__svg" viewBox="0 0 1200 360" role="img" aria-labelledby="route-svg-title">
-              <title id="route-svg-title">Elevation profile of the route, climbing from 1,340 metres at the road end to 2,240 metres at the vault portal</title>
-              <defs>
-                <pattern id="route-rock" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.9" /></pattern>
-              </defs>
-              <g class="route__grid">
-                <line x1="40" y1="330" x2="1160" y2="330" /><text x="40" y="350">1,300 M</text>
-                <line x1="40" y1="190" x2="1160" y2="190" /><text x="40" y="182">1,800 M</text>
-                <line x1="40" y1="50" x2="1160" y2="50" /><text x="40" y="42">2,300 M</text>
-              </g>
-              <path class="route__ground" d="M60 318.8 L140 305 L210 290 L260 282 L330 250 L380 232 L420 215.2 L480 205 L540 190 L600 165 L660 158 L720 140 L780 128 L820 117.2 L880 110 L940 96 L1000 92 L1060 78 L1100 72 L1140 66.8 L1160 64 L1160 330 L60 330 Z" />
-              <path class="route__trail" d="M60 318.8 L140 305 L210 290 L260 282 L330 250 L380 232 L420 215.2 L480 205 L540 190 L600 165 L660 158 L720 140 L780 128 L820 117.2 L880 110 L940 96 L1000 92 L1060 78 L1100 72 L1140 66.8" />
-              <path class="route__done" data-route-done d="M60 318.8 L140 305 L210 290 L260 282 L330 250 L380 232 L420 215.2 L480 205 L540 190 L600 165 L660 158 L720 140 L780 128 L820 117.2 L880 110 L940 96 L1000 92 L1060 78 L1100 72 L1140 66.8" />
-              <g class="route__point" data-route-point="0"><circle cx="60" cy="318.8" r="6" /><text x="60" y="300" text-anchor="middle">01</text></g>
-              <g class="route__point" data-route-point="1"><circle cx="420" cy="215.2" r="6" /><text x="420" y="197" text-anchor="middle">02</text></g>
-              <g class="route__point" data-route-point="2"><circle cx="820" cy="117.2" r="6" /><text x="820" y="99" text-anchor="middle">03</text></g>
-              <g class="route__point" data-route-point="3"><circle cx="1140" cy="66.8" r="6" /><text x="1140" y="48" text-anchor="middle">04</text></g>
-              <circle class="route__marker" data-route-marker cx="60" cy="318.8" r="8" />
-            </svg>
-            <ol class="route__stops">
-              <li data-route-stop="0"><span class="mono">01 · 1,340 m · 06:00</span><h4>Road end</h4><p>Cassettes come off the trucks at dawn. Each guide carries two.</p></li>
-              <li data-route-stop="1"><span class="mono">02 · 1,710 m · 08:30</span><h4>Moraine camp</h4><p>Radio check with the vault. The weather window is confirmed, or the team turns back.</p></li>
-              <li data-route-stop="2"><span class="mono">03 · 2,060 m · 10:45</span><h4>Sorvald ridge</h4><p>Fixed ropes along the ridge. In winter, skins and crampons.</p></li>
-              <li data-route-stop="3"><span class="mono">04 · 2,240 m · 12:10</span><h4>Vault portal</h4><p>Handover to the custodians. The door closes behind the cassettes.</p></li>
+        <div class="route" data-route>
+          <div class="route__pin" data-route-pin>
+            <canvas class="route__map" data-route-map aria-hidden="true"></canvas>
+            <div class="route__overlay" aria-hidden="true">
+              <span class="route__label" data-route-label="0"><i></i>01 Road end</span>
+              <span class="route__label" data-route-label="1"><i></i>02 Moraine camp</span>
+              <span class="route__label" data-route-label="2"><i></i>03 Sorvald ridge</span>
+              <span class="route__label" data-route-label="3"><i></i>04 Vault portal</span>
+              <span class="route__peak" data-route-peak><i></i>Sorvald · 2,312 m</span>
+              <span class="route__marker" data-route-marker><i></i></span>
+            </div>
+            <div class="route__shade" aria-hidden="true"></div>
+
+            <div class="route__head">
+              <p class="eyebrow mono">The route</p>
+              <h3 class="route__title" id="route-title">From road end to vault portal.</h3>
+            </div>
+
+            <div class="route__readout" aria-hidden="true">
+              <p class="route__alt"><span data-route-alt>1,340</span><small>m</small></p>
+              <p class="route__clock mono"><span data-route-time>06:00</span> · <span data-route-temp>−9</span> °C</p>
+            </div>
+
+            <ol class="route__stops" aria-labelledby="route-title">
+              <li class="route-stop is-active" data-route-stop="0">
+                <span class="mono">01 · 1,340 m · 06:00</span>
+                <h4 class="route-stop__name">Road end</h4>
+                <p>Cassettes come off the trucks at dawn. Each guide carries two.</p>
+              </li>
+              <li class="route-stop" data-route-stop="1">
+                <span class="mono">02 · 1,710 m · 08:30</span>
+                <h4 class="route-stop__name">Moraine camp</h4>
+                <p>Radio check with the vault. The weather window is confirmed, or the team turns back.</p>
+              </li>
+              <li class="route-stop" data-route-stop="2">
+                <span class="mono">03 · 2,060 m · 10:45</span>
+                <h4 class="route-stop__name">Sorvald ridge</h4>
+                <p>Fixed ropes along the crest. In winter, skins and crampons.</p>
+              </li>
+              <li class="route-stop" data-route-stop="3">
+                <span class="mono">04 · 2,240 m · 12:10</span>
+                <h4 class="route-stop__name">Vault portal</h4>
+                <p>Handover to the custodians. The door closes behind the cassettes.</p>
+              </li>
             </ol>
-          </figure>
+
+            <div class="route__furniture mono" aria-hidden="true">
+              <span class="route__north">N <i>↑</i></span>
+              <span class="route__scale"><i></i>500 m</span>
+            </div>
+
+            <div class="route__progress" aria-hidden="true"><span data-route-progress></span><i data-route-tick="0"></i><i data-route-tick="1"></i><i data-route-tick="2"></i><i data-route-tick="3"></i></div>
+          </div>
         </div>
 
         <div class="kit" aria-labelledby="kit-title">
@@ -550,34 +571,72 @@
       <!-- FAQ -->
       <section class="faq theme-light sheet" id="faq" aria-labelledby="faq-title">
         <div class="section faq__inner">
-          <div class="section-head">
+          <div class="faq__aside">
             <p class="eyebrow mono">FAQ</p>
-            <h2 class="section-title title--sentence" id="faq-title" data-reveal>Good questions.</h2>
+            <h2 class="faq__title title--sentence" id="faq-title" data-reveal>Good questions.</h2>
+            <p class="faq__lead">The things people ask before they trust a mountain with their records.</p>
+            <a class="faq__ask" href="#contact">Ask your own <span aria-hidden="true">→</span></a>
           </div>
-          <div class="faq__list">
-            <details class="faq__item">
-              <summary>What happens if LITHIC closes down?</summary>
-              <p>Custody passes to an independent trust funded at signing. And every plate carries its own reading instructions, so no LITHIC software is ever needed to read it.</p>
+          <div class="faq__list" data-faq>
+            <details class="faq__item" data-faq-item>
+              <summary class="faq__summary">
+                <span class="faq__num mono">01</span>
+                <span class="faq__question">What happens if LITHIC closes down?</span>
+                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+              </summary>
+              <div class="faq__answer" data-faq-answer>
+                <p>Custody passes to an independent trust funded at signing. And every plate carries its own reading instructions, so no LITHIC software is ever needed to read it.</p>
+              </div>
             </details>
-            <details class="faq__item">
-              <summary>How do I get my data back?</summary>
-              <p>Request a retrieval and we return a certified copy within 48 hours. In the far future, an optical microscope and the picture guide etched on every plate are enough.</p>
+            <details class="faq__item" data-faq-item>
+              <summary class="faq__summary">
+                <span class="faq__num mono">02</span>
+                <span class="faq__question">How do I get my data back?</span>
+                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+              </summary>
+              <div class="faq__answer" data-faq-answer>
+                <p>Request a retrieval and we return a certified copy within 48 hours. In the far future, an optical microscope and the picture guide etched on every plate are enough.</p>
+              </div>
             </details>
-            <details class="faq__item">
-              <summary>Is it secure?</summary>
-              <p>You can encrypt data before it is etched. The vault has no network connection at all, and opening it takes three custodians and two physical keys.</p>
+            <details class="faq__item" data-faq-item>
+              <summary class="faq__summary">
+                <span class="faq__num mono">03</span>
+                <span class="faq__question">Is it secure?</span>
+                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+              </summary>
+              <div class="faq__answer" data-faq-answer>
+                <p>You can encrypt data before it is etched. The vault has no network connection at all, and opening it takes three custodians and two physical keys.</p>
+              </div>
             </details>
-            <details class="faq__item">
-              <summary>Can data be changed or deleted?</summary>
-              <p>No. Etching is permanent, which is the point. For collections that keep growing, we etch new plates on a schedule.</p>
+            <details class="faq__item" data-faq-item>
+              <summary class="faq__summary">
+                <span class="faq__num mono">04</span>
+                <span class="faq__question">Can data be changed or deleted?</span>
+                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+              </summary>
+              <div class="faq__answer" data-faq-answer>
+                <p>No. Etching is permanent, which is the point. For collections that keep growing, we etch new plates on a schedule.</p>
+              </div>
             </details>
-            <details class="faq__item">
-              <summary>How much fits on one plate?</summary>
-              <p>Up to 360 TB on a 120 × 120 mm plate. Family tiles are smaller and hold up to 100 GB.</p>
+            <details class="faq__item" data-faq-item>
+              <summary class="faq__summary">
+                <span class="faq__num mono">05</span>
+                <span class="faq__question">How much fits on one plate?</span>
+                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+              </summary>
+              <div class="faq__answer" data-faq-answer>
+                <p>Up to 360 TB on a 120 × 120 mm plate. Family tiles are smaller and hold up to 100 GB.</p>
+              </div>
             </details>
-            <details class="faq__item">
-              <summary>Why a mountain in Norway?</summary>
-              <p>Bedrock that has been stable for 1.8 billion years, a constant −4 °C, low seismic risk and a strong rule of law.</p>
+            <details class="faq__item" data-faq-item>
+              <summary class="faq__summary">
+                <span class="faq__num mono">06</span>
+                <span class="faq__question">Why a mountain in Norway?</span>
+                <span class="faq__icon" aria-hidden="true"><i></i><i></i></span>
+              </summary>
+              <div class="faq__answer" data-faq-answer>
+                <p>Bedrock that has been stable for 1.8 billion years, a constant −4 °C, low seismic risk and a strong rule of law.</p>
+              </div>
             </details>
           </div>
         </div>

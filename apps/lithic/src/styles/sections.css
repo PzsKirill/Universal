@@ -10,6 +10,7 @@ main > section:not(.hero) {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: 1fr auto;
+  row-gap: clamp(2.5rem, 7vh, 5rem); /* breathing room between the call to action and the facts */
   min-height: 100svh;
   padding: calc(var(--header-h) + 2rem) var(--gutter) clamp(1.5rem, 4vh, 2.5rem);
 }
@@ -45,11 +46,12 @@ main > section:not(.hero) {
   grid-column: 1;
   align-content: center;
   gap: 1.75rem;
-  max-width: 40rem;
+  max-width: 50rem;
 }
 
+/* Three lines at every width: sized so "10,000 years." fits its column. */
 .hero__title {
-  font-size: clamp(2.4rem, 5vw, 5.6rem);
+  font-size: clamp(2rem, 4.1vw, 4.9rem);
 }
 
 /* SplitText masks clip at the line box; leave room below the baseline. */
@@ -141,9 +143,12 @@ main > section:not(.hero) {
     display: none;
   }
 
+  .hero__title {
+    font-size: 8.4vw;
+  }
+
   .hero__facts {
     grid-template-columns: 1fr;
-    margin-top: 2.5rem;
   }
 
   .hero__facts li {
@@ -833,153 +838,348 @@ main > section:not(.hero) {
   }
 }
 
-.route__figure {
-  display: grid;
-  gap: 2.5rem;
-  margin: 0;
+/* ---------- The route: pinned topographic map ---------- */
+.route__pin {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--night);
 }
 
-.route__svg {
+.route__map {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: 100%;
 }
 
-.route__grid line {
-  stroke: var(--line-strong);
-  stroke-dasharray: 2 6;
+/* Blend into the night above and below, keep the left side readable. */
+.route__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, var(--night), transparent 16%, transparent 66%, rgb(6 8 11 / 0.9) 90%),
+    linear-gradient(90deg, rgb(6 8 11 / 0.72), transparent 38%);
+  pointer-events: none;
 }
 
-.route__grid text,
-.route__point text {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  fill: var(--bone-500);
+.route__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.route__svg pattern circle {
-  fill: rgb(236 232 223 / 0.1);
-}
-
-.route__ground {
-  fill: url(#route-rock);
-}
-
-.route__trail {
-  fill: none;
-  stroke: var(--bone-500);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 6;
-}
-
-.route__done {
-  fill: none;
-  stroke: var(--laser);
-  stroke-width: 2.5;
-}
-
-.route__point circle {
-  fill: var(--night);
-  stroke: var(--bone-500);
-  stroke-width: 1.5;
-  transition:
-    fill 0.4s,
-    stroke 0.4s;
-}
-
-.route__point.is-reached circle {
-  fill: var(--laser);
-  stroke: var(--laser);
-}
-
-.route__point.is-reached text {
-  fill: var(--bone-100);
-}
-
+.route__label,
+.route__peak,
 .route__marker {
-  fill: var(--bone-100);
-  stroke: var(--laser);
-  stroke-width: 3;
-  filter: drop-shadow(0 0 8px var(--laser));
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
 }
 
-.route__stops {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 2rem);
-}
-
-.route__stops li {
-  display: grid;
-  align-content: start;
-  gap: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-  opacity: 0.4;
-  transition:
-    opacity 0.5s,
-    border-color 0.5s;
-}
-
-.route__stops li.is-reached {
-  opacity: 1;
-  border-color: var(--laser);
-}
-
-.route__stops .mono {
+.route__label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: -6px 0 0 -6px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
   color: var(--bone-500);
+  transition: color 0.5s;
 }
 
-.route__stops h4 {
-  font-size: 1.15rem;
-  font-weight: 600;
+.route__label i {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid currentColor;
+  background: var(--night);
+  transform: rotate(45deg);
+  transition:
+    background-color 0.4s,
+    border-color 0.4s,
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.route__stops p {
+.route__label.is-reached {
+  color: var(--bone-100);
+}
+
+.route__label.is-reached i {
+  border-color: var(--laser);
+  background: var(--laser);
+  transform: rotate(45deg) scale(1.15);
+}
+
+.route__peak {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -5px 0 0 -6px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  text-transform: uppercase;
+  white-space: nowrap;
   color: var(--bone-300);
 }
 
-@media (max-width: 900px) {
-  .route__stops {
-    grid-template-columns: 1fr 1fr;
+.route__peak i {
+  width: 0;
+  height: 0;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid var(--bone-300);
+  border-left: 6px solid transparent;
+}
+
+/* The team: a bright point with a slow pulse. */
+.route__marker {
+  width: 0;
+  height: 0;
+}
+
+.route__marker i,
+.route__marker::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.route__marker i {
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--laser);
+  background: var(--bone-100);
+  box-shadow: 0 0 18px var(--laser);
+}
+
+.route__marker::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--laser);
+  animation: route-pulse 2.2s var(--ease-out) infinite;
+}
+
+@keyframes route-pulse {
+  to {
+    width: 70px;
+    height: 70px;
+    opacity: 0;
   }
 }
 
-/* The chart scales down ~3x on phones: thicken lines and enlarge labels in SVG units to compensate. */
+.route__head {
+  position: absolute;
+  top: calc(var(--header-h) + 2rem);
+  left: var(--gutter);
+  display: grid;
+  gap: 1.25rem;
+  max-width: 34rem;
+}
+
+.route__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.6vw, 3.8rem);
+  font-stretch: 112%;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.route__readout {
+  position: absolute;
+  top: calc(var(--header-h) + 2rem);
+  right: var(--gutter);
+  display: grid;
+  justify-items: end;
+  gap: 0.6rem;
+}
+
+.route__alt {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7.5vw, 8rem);
+  font-stretch: 125%;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+.route__alt small {
+  margin-left: 0.12em;
+  font-size: 0.32em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--bone-500);
+}
+
+.route__clock {
+  font-size: 0.8rem;
+  color: var(--bone-300);
+}
+
+.route__stops {
+  position: absolute;
+  bottom: calc(clamp(1.5rem, 4vh, 2.5rem) + 3rem);
+  left: var(--gutter);
+  width: min(27rem, calc(100% - 2 * var(--gutter)));
+}
+
+.route-stop {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+
+.route-stop.is-active {
+  opacity: 1;
+  transform: none;
+}
+
+.route-stop .mono {
+  color: var(--laser);
+}
+
+.route-stop__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  font-stretch: 112%;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.route-stop p {
+  max-width: 34ch;
+  color: var(--bone-300);
+}
+
+.route__furniture {
+  position: absolute;
+  right: var(--gutter);
+  bottom: calc(clamp(1.5rem, 4vh, 2.5rem) + 3rem);
+  display: grid;
+  justify-items: end;
+  gap: 1rem;
+  color: var(--bone-500);
+}
+
+.route__north i {
+  display: inline-block;
+  margin-left: 0.3rem;
+  font-style: normal;
+  color: var(--bone-100);
+}
+
+.route__scale {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.route__scale i {
+  width: 6rem;
+  height: 6px;
+  border: 1px solid var(--bone-500);
+  border-top: 0;
+}
+
+.route__progress {
+  position: absolute;
+  right: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  left: var(--gutter);
+  height: 2px;
+  background: rgb(236 232 223 / 0.18);
+}
+
+.route__progress span {
+  position: absolute;
+  inset: 0;
+  background: var(--laser);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.route__progress i {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid var(--bone-500);
+  background: var(--night);
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition:
+    background-color 0.4s,
+    border-color 0.4s;
+}
+
+.route__progress i.is-reached {
+  border-color: var(--laser);
+  background: var(--laser);
+}
+
+/* Without motion: a still overview with every stop listed. */
+.route--static .route__stops {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: auto;
+  right: var(--gutter);
+}
+
+.route--static .route-stop {
+  position: static;
+  opacity: 1;
+  transform: none;
+}
+
+.route--static .route__progress {
+  display: none;
+}
+
 @media (max-width: 700px) {
-  .route__grid text,
-  .route__point text {
-    font-size: 30px;
+  .route__head {
+    max-width: 58%;
   }
 
-  .route__grid line {
-    stroke-dasharray: 6 16;
+  .route__title {
+    font-size: 1.5rem;
   }
 
-  .route__trail {
-    stroke-width: 4;
-    stroke-dasharray: 10 14;
+  .route__alt {
+    font-size: 2.6rem;
   }
 
-  .route__done {
-    stroke-width: 7;
+  .route__furniture,
+  .route__label {
+    font-size: 0.55rem;
   }
 
-  .route__point circle {
-    r: 14px;
-    stroke-width: 4;
+  .route__furniture {
+    display: none;
   }
 
-  .route__marker {
-    r: 20px;
-    stroke-width: 7;
+  .route-stop p {
+    font-size: 0.9rem;
   }
-}
 
-@media (max-width: 560px) {
-  .route__stops {
-    grid-template-columns: 1fr;
+  .route--static .route__stops {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -1165,49 +1365,221 @@ main > section:not(.hero) {
 }
 
 /* ---------- FAQ ---------- */
+.faq__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(2.5rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.faq__aside {
+  position: sticky;
+  top: calc(var(--header-h) + 2.5rem);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.faq__title {
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+}
+
+.faq__lead {
+  max-width: 30ch;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--bone-300);
+}
+
+.faq__ask {
+  position: relative;
+  justify-self: start;
+  padding-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.faq__ask::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--laser);
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.faq__ask:hover::after {
+  transform: scaleX(1);
+}
+
 .faq__list {
-  max-width: 62rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line-strong);
+  counter-reset: faq;
 }
 
 .faq__item {
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  border-bottom: 1px solid var(--line-strong);
 }
 
-.faq__item summary {
-  display: flex;
+/* A laser line runs along the bottom edge on hover, and stays lit while open. */
+.faq__item::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--laser);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease-out);
+}
+
+.faq__item:hover::after,
+.faq__item.is-open::after {
+  transform: scaleX(1);
+}
+
+.faq__summary {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-block: 1.5rem;
-  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
-  font-weight: 500;
+  gap: 1rem;
+  padding-block: clamp(1.4rem, 3vh, 2rem);
   list-style: none;
   cursor: pointer;
 }
 
-.faq__item summary::-webkit-details-marker {
+.faq__summary::-webkit-details-marker {
   display: none;
 }
 
-.faq__item summary::after {
-  content: '+';
-  flex: none;
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
+.faq__summary:focus-visible {
+  outline-offset: 6px;
+}
+
+.faq__num {
   color: var(--bone-500);
-  transition: transform 0.4s var(--ease-out);
+  transition: color 0.4s;
 }
 
-.faq__item[open] summary::after {
-  transform: rotate(45deg);
-  color: var(--laser);
+.faq__question {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.9vw, 1.9rem);
+  font-stretch: 112%;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  transition:
+    transform 0.6s var(--ease-out),
+    color 0.4s;
 }
 
-.faq__item p {
-  max-width: 60ch;
-  padding-bottom: 1.75rem;
+.faq__item:hover .faq__question {
+  transform: translateX(0.5rem);
+}
+
+.faq__item.is-open .faq__num {
+  color: var(--laser-ink);
+}
+
+/* The cross: two bars in a ring. Open, the ring fills with laser and the plus turns into a ×. */
+.faq__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  overflow: hidden;
+  transition:
+    border-color 0.4s,
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.faq__icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--laser);
+  transform: scale(0);
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.faq__icon i {
+  position: absolute;
+  width: 14px;
+  height: 1.5px;
+  background: var(--bone-100);
+  transition:
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s;
+}
+
+.faq__icon i:last-child {
+  transform: rotate(90deg);
+}
+
+.faq__item:hover .faq__icon {
+  border-color: var(--bone-100);
+  transform: scale(1.08);
+}
+
+.faq__item.is-open .faq__icon {
+  border-color: var(--laser);
+}
+
+.faq__item.is-open .faq__icon::before {
+  transform: scale(1);
+}
+
+.faq__item.is-open .faq__icon i {
+  background: #06080b;
+  transform: rotate(135deg);
+}
+
+.faq__item.is-open .faq__icon i:last-child {
+  transform: rotate(225deg);
+}
+
+.faq__answer {
+  overflow: hidden;
+}
+
+.faq__answer p {
+  max-width: 58ch;
+  padding: 0 4rem clamp(1.6rem, 3.5vh, 2.4rem) 4.5rem;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
   color: var(--bone-300);
+}
+
+@media (max-width: 900px) {
+  .faq__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .faq__aside {
+    position: static;
+  }
+
+  .faq__summary {
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  }
+
+  .faq__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .faq__answer p {
+    padding-inline: 2.25rem 0;
+  }
 }
 
 /* ---------- Finale: the 3D plate returns behind this section ---------- */
@@ -1510,8 +1882,7 @@ main > section.finale {
   color: var(--bone-100);
 }
 
-.theme-light .plan__name,
-.theme-light .faq__item[open] summary::after {
+.theme-light .plan__name {
   color: var(--laser-ink);
 }
 

@@ -27,7 +27,7 @@
 
   /* Layout */
   --gutter: clamp(1.1rem, 3vw, 3rem);
-  --max: 1440px;
+  --max: 100%;
   --header-h: 4.5rem;
   --section-space: clamp(6rem, 14vh, 10rem);
   --radius: 2px;

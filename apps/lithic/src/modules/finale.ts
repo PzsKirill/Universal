@@ -82,7 +82,7 @@ export function initFinale(experience: Experience | null): void {
 
     if (experience) {
       setStatus(`Etching plate Nº ${plate}…`)
-      await experience.etchMessage(message)
+      await experience.etchMessage(message, true)
       setStatus('Sealing…')
       sound.seal()
       await experience.seal()

@@ -30,7 +30,7 @@ const stops = [
   ['06-vault', '#vault', 0, 1400],
   ['06b-vault-details', '.vault__details', -0.05, 1800],
   ['07-mile', '#expedition', 0, 2600],
-  ['07b-route', '[data-route]', -0.25, 2000],
+  ['07b-route', '[data-route]', 1.4, 2000],
   ['07c-kit', '.kit', 0, 1400],
   ['07d-case', '#case', 0.1, 1600],
   ['07e-case-quote', '.case__quote', -0.2, 1800],

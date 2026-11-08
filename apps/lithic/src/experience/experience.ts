@@ -4,7 +4,7 @@ import { gsap } from '../lib/gsap'
 import { reducedMotion } from '../lib/motion'
 import { createBackdrop } from './backdrop'
 import { createGlassEnvironment } from './environment'
-import { blankPattern, createPlate, messagePattern } from './plate'
+import { archivePattern, blankPattern, type Cell, createPlate, messagePattern } from './plate'
 import { createComposer } from './post'
 import { createSnow } from './snow'
 
@@ -48,6 +48,8 @@ export class Experience {
   private etch = { value: 0 }
   private scroll = 0 // hero progress, 0..1
   private finale = 0 // finale visibility, 0..1
+  private heroPattern: Cell[] = archivePattern() // what the hero plate shows: the archive, or the visitor's sealed words
+  private showingHero = true
   private running = false
 
   constructor(
@@ -125,12 +127,23 @@ export class Experience {
       gsap.killTweensOf(this.drop)
       this.drop.value = 0
     }
+    // Back in the hero, the plate shows the archive again (or the visitor's sealed words), never the sample.
+    if (visibility === 0 && !this.showingHero) {
+      gsap.killTweensOf(this.etch)
+      this.plate.setPattern(this.heroPattern)
+      this.etch.value = 1
+      this.plate.setEtch(1)
+      this.showingHero = true
+    }
     this.syncVisibility()
   }
 
-  /** Writes a message into a fresh plate. Resolves when the laser has finished. */
-  async etchMessage(message: string) {
-    this.plate.setPattern(messagePattern(message))
+  /** Writes a message into a fresh plate. `keep`: the hero shows it from now on. Resolves when etched. */
+  async etchMessage(message: string, keep = false) {
+    const pattern = messagePattern(message)
+    if (keep) this.heroPattern = pattern
+    this.showingHero = false
+    this.plate.setPattern(pattern)
     await this.runEtch(reducedMotion ? 0 : 2.6)
   }
 
@@ -142,6 +155,7 @@ export class Experience {
 
   /** A blank plate comes down from above, ready for the next message. */
   async presentBlankPlate() {
+    this.showingHero = false
     this.plate.setPattern(blankPattern())
     this.etch.value = 1
     this.plate.setEtch(1)

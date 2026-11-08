@@ -6,6 +6,8 @@ export class Sound {
   private ctx: AudioContext | null = null
   private master: GainNode | null = null
   private depthFilter: BiquadFilterNode | null = null
+  private analyser: AnalyserNode | null = null
+  private spectrum: Uint8Array<ArrayBuffer> | null = null
   private wind: GainNode | null = null
   private depth = 0
   private enabled = false
@@ -55,6 +57,27 @@ export class Sound {
     if (!ctx || !depthFilter || !wind) return
     depthFilter.frequency.setTargetAtTime(9000 * Math.pow(1 - value, 2) + 380, ctx.currentTime, 0.4)
     wind.gain.setTargetAtTime(0.035 * (1 - value), ctx.currentTime, 0.6)
+  }
+
+  /**
+   * Loudness of each band (Hz ranges) right now, 0..1 per band, for the header meter.
+   * All zeros when sound is off.
+   */
+  levels(bands: readonly (readonly [number, number])[], out: number[]) {
+    const { ctx, analyser, spectrum } = this
+    if (!this.enabled || !ctx || !analyser || !spectrum) {
+      out.fill(0)
+      return
+    }
+    analyser.getByteFrequencyData(spectrum)
+    const hzPerBin = ctx.sampleRate / analyser.fftSize
+    bands.forEach(([low, high], i) => {
+      const from = Math.max(1, Math.floor(low / hzPerBin))
+      const to = Math.max(from + 1, Math.ceil(high / hzPerBin))
+      let peak = 0
+      for (let bin = from; bin < to; bin++) peak = Math.max(peak, spectrum[bin])
+      out[i] = peak / 255
+    })
   }
 
   /** A short, dry laser click. Throttled so fast etching doesn't turn into noise. */
@@ -131,6 +154,14 @@ export class Sound {
     depthFilter.type = 'lowpass'
     depthFilter.frequency.value = 9000
     master.connect(depthFilter).connect(compressor).connect(ctx.destination)
+    const analyser = ctx.createAnalyser()
+    analyser.fftSize = 2048
+    analyser.smoothingTimeConstant = 0.85
+    analyser.minDecibels = -80
+    analyser.maxDecibels = -6 // headroom: the steady drone sits mid-scale, laser clicks reach the top
+    compressor.connect(analyser)
+    this.analyser = analyser
+    this.spectrum = new Uint8Array(analyser.frequencyBinCount)
     this.ctx = ctx
     this.master = master
     this.depthFilter = depthFilter
